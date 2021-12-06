@@ -1,7 +1,5 @@
-const objext = {
-  hello: () => {
-    console.log("hello this is the digkesra algirithm");
-  },
-};
+const obj = ()=>{
+  return alert('helllo')
+}
 
-export { objext };
+export {obj}

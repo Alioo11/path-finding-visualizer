@@ -1,3 +1,6 @@
+import obj from './algorithms/dijkestra'
+console.log(obj)
+
 const board = document.getElementsByClassName("board");
 let isXActive = false;
 

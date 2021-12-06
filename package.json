@@ -1,0 +1,20 @@
+{
+  "name": "pathfinding-vis",
+  "version": "1.0.0",
+  "description": "path finding visualizer helps you find your way :-) ",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alioo11/path-finding-visualizer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alioo11/path-finding-visualizer/issues"
+  },
+  "homepage": "https://github.com/Alioo11/path-finding-visualizer#readme"
+}
