@@ -1,0 +1,10 @@
+
+const scaning = "scaning";
+const path = "path";
+const wall = "wall";
+const target = "target";
+const entry = "entry";
+
+export const draw = (NodeCell , type)=>{
+    NodeCell.className = NodeCell.className === target ? target : type
+}
