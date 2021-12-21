@@ -1,4 +1,4 @@
-import { findNeighbours } from "../helpers/neighbours.js"
+import { findNeighbours , findNeighbours2} from "../helpers/neighbours.js"
 import { draw } from "../helpers/draw.js"
 import {dimentions as DM} from '../utils/config.js'
 import {cells} from '../index.js'
@@ -23,7 +23,7 @@ const cell = 'cell'
 
 const FillBoard = async ()=>{
     for(let i =0 ; i<HEIGHT ; i++){
-        await onWaiting(150)
+        await onWaiting(100)
         for(let j=0 ; j<WIDTH ; j++){
             draw(cells[WIDTH*i +j] , wall)
         }
@@ -63,7 +63,7 @@ export const backTracker = async (NodeCell , firstTime)=>{
     }
     if(visitedNodes.length === 0) return
 
-    const possibleRouts =  findNeighbours(visitedNodes[visitedNodes.length -1] , 2 , true).filter((routItem)=>routItem.className !== 'cell')
+    const possibleRouts =  findNeighbours2(visitedNodes[visitedNodes.length -1] , 2 ).filter((routItem)=>routItem.className !== 'cell')
     if(possibleRouts.length === 0) {
         visitedNodes.pop()
     }else{
@@ -73,7 +73,7 @@ export const backTracker = async (NodeCell , firstTime)=>{
         //console.log(randomNode)
         visitedNodes.push(randomNode)
         //draw what you did 
-        await onWaiting(100)
+        await onWaiting(10)
         //console.log(visitedNodes)
         //find what is in between 
         const betWeenCell = findInBetween(NodeCell , visitedNodes[visitedNodes.length-1])

@@ -8,3 +8,6 @@ const entry = "entry";
 export const draw = (NodeCell , type)=>{
     NodeCell.className = NodeCell.className === target ? target : type
 }
+export const writeIn = (NodeCell , content)=>{
+    NodeCell.innerHTML = content
+}

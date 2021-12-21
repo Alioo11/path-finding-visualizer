@@ -22,6 +22,7 @@ export default function Myset() {
     this.bestNode = this.collection.reduce((all, current) => {
       return all.cost > current.cost ? current : all;
     });
+    // console.log(this.bestNode)
     return this.bestNode;
   };
   this.reSort = () => {

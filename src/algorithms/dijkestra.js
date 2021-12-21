@@ -1,4 +1,4 @@
-import { draw } from "../helpers/draw.js"; 
+import { draw, writeIn } from "../helpers/draw.js"; 
 import Node from '../helpers/Node.js'
 import Myset  from "../helpers/mySet.js";
 import {onWaiting} from './../helpers/wait.js'
@@ -12,6 +12,7 @@ const path = "path";
 const wall = "wall";
 const target = "target";
 const entry = "entry";
+const weight = 'weight'
 
 export const dijkestra = (startingNode) => {
   const NodeList = [];
@@ -19,14 +20,18 @@ export const dijkestra = (startingNode) => {
   const iteration = async (nodeLoop, firstTime) => {
     NodeList.push(nodeLoop);
     draw(nodeLoop.node, firstTime ? entry : scaning);
+    writeIn(nodeLoop.node , nodeLoop.cost )
     if (nodeLoop.node.className === target) {
       visPath(nodeLoop);
       return;
     }
-    const res = await onWaiting();
+    const res = await onWaiting(2);
     possibleRouts.delete(nodeLoop);
     findNeighbours(nodeLoop.node).forEach((item) => {
-      const newNode = new Node(item, nodeLoop, scaning, nodeLoop.cost + 1);
+      const newNode = new Node(item, nodeLoop, scaning, nodeLoop.cost + (item.className === weight ? 10 : 1) );
+      //console.log(item.className == weight)
+      //console.log()
+      //console.log(newNode)
       possibleRouts.add(newNode);
     });
     iteration(possibleRouts.findBestNode());
