@@ -3,6 +3,7 @@ import {onWaiting} from './../helpers/wait.js'
 import { findNeighbours } from "../helpers/neighbours.js";
 import {visPath} from './../helpers/visPath.js'
 import { distance } from "../helpers/distance.js";
+import { dimentions } from "../utils/config.js";
 
 const scaning = "scaning";
 const path = "path";
@@ -99,6 +100,7 @@ export const a_start2 = (startingNode , endNode) => {
   const NodeList = [];
   const possibleRouts = new set();
   const iteration = async (nodeLoop, firstTime) => {
+    console.log( dimentions.name)
     NodeList.push(nodeLoop);
     draw(nodeLoop.node, firstTime ? entry : scaning);
     writeIn(nodeLoop.node , `C:${nodeLoop.cost } <br/> H:${nodeLoop.cost==0?0: nodeLoop.heuristic}` )

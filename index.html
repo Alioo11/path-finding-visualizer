@@ -1,44 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>path finding visualizer</title>
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
   <script src="./src/index.js" defer type="module"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 </head>
-<body>
-    <nav class="nav-body">
-    <div class="nav-container">
-      pick an algorithm
-    </div>
-        <div class="nav-container">
-      algorithm :
-    </div>
-        <div class="nav-container">
-      Maze algorithm:
-    </div>
-        <div class="nav-container">
-          <div class="play_back_button">
-            <img src="./media/navigate.png" alt="">
-          </div>
-          <div class="play_back_button">
-            <img src="./media/pause.png" alt="">
-          </div>
-          <div class="play_back_button">
-            <img id="start_btn" src="./media/play.png" alt="">
-          </div>
-      
-    </div>
 
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light  bg-light nav-custom ">
+    <h3 class="navbar-brand text-secondary" href="#">Pathfinding Visualizer</h3>
+    <button class="btn btn-primary" style="margin-left: 1rem; width:5rem" type="button" id="start_btn">
+      start
+    </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto  ">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            algorithm
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <button class="dropdown-item btn" href="#" id="dijkestra_btn">Dijkestra</button>
+            <button class="dropdown-item btn" href="#" id="a_star_btn">A*</button>
+            <div class="dropdown-divider"></div>
+            <div style=" padding: 0 1.4rem ;">speed</div>
+            <input type="range" class="form-range dropdown-item" min="0" max="5" value="0" id="algo_speed">
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Maze algorithm
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">recursive back-tracking</a>
+            <div class="dropdown-divider"></div>
+            <div style=" padding: 0 1.4rem ;">speed</div>
+            <input type="range" class="form-range dropdown-item" min="0" max="5" id="maze_algorithm_speed">
+          </div>
+        </li>
+        <li class="btn-group btn-group-toggle" style="margin: 0rem auto;" data-toggle="buttons">
+          <label class="btn btn-secondary active" id="create_maze">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> create Maze
+          </label>
+        </li>
+      </ul>
+    </div>
   </nav>
+
+
   <div class="board"></div>
 </body>
-</html>
 
+</html>

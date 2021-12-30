@@ -1,3 +1,4 @@
+
 export const onWaiting = (waitingTime) => {
   return new Promise((resolve, reject) => {
     setTimeout(
@@ -6,5 +7,11 @@ export const onWaiting = (waitingTime) => {
       },
       waitingTime ? waitingTime : 30
     );
+  });
+};
+
+export const onPause = () => {
+  return new Promise((resolve, reject) => {
+    //
   });
 };
