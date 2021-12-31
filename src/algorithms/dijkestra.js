@@ -7,6 +7,8 @@ import { visPath } from './../helpers/visPath.js'
 
 const set = Myset
 
+let delayTime = 0;
+
 const scaning = "scaning";
 const path = "path";
 const wall = "wall";
@@ -20,12 +22,13 @@ export const dijkestra = (startingNode) => {
   const iteration = async (nodeLoop, firstTime) => {
     NodeList.push(nodeLoop);
     draw(nodeLoop.node, firstTime ? entry : scaning);
+    firstTime ? delayTime = (5 - localStorage.getItem("algorithm_speed")) * 20 + 2 : 15;
     writeIn(nodeLoop.node, `c:${nodeLoop.cost}`)
     if (nodeLoop.node.className === target) {
       visPath(nodeLoop);
       return;
     }
-    const res = await onWaiting(15);
+    const res = await onWaiting(delayTime);
     possibleRouts.delete(nodeLoop);
     findNeighbours(nodeLoop.node).forEach((item) => {
       const newNode = new Node(item, nodeLoop, scaning, nodeLoop.cost + (item.className === weight ? 10 : 1));

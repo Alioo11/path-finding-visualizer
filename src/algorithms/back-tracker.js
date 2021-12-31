@@ -8,6 +8,7 @@ const dimentions = new DM()
 
 const getRandomArbitrary = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
+
 }
 
 let delayTime = 0

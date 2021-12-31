@@ -1,13 +1,23 @@
-import { draw, writeIn } from './helpers/draw.js'
+import { draw, writeIn, forceDraw } from './helpers/draw.js'
 import Node from './helpers/Node.js'
 import { dijkestra } from './algorithms/dijkestra.js'
 import { backTracker } from './algorithms/back-tracker.js'
 import { dimentions as DM } from './utils/config.js'
 import { findNeighbours, findNeighbours2 } from './helpers/neighbours.js'
 import { distance } from './helpers/distance.js'
-import { a_start2 } from './algorithms/a_start.js'
+import { a_start, a_start2 } from './algorithms/a_start.js'
+
+document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
+  localStorage.setItem("algorithm", "dijkestra")
+})
+document.getElementById("algo_A_start").addEventListener('click', (e) => {
+  localStorage.setItem("algorithm", "a_start")
+})
+
 
 const maze_speed = document.getElementById("maze_algorithm_speed")
+const algorithm_speed = document.getElementById("algorithm_speed")
+
 const create_maze = document.getElementById("create_maze")
 
 const dimentions = new DM()
@@ -34,6 +44,8 @@ const cell = "cell"
 
 function clearLocalStorage() {
   localStorage.removeItem("maze_speed")
+  localStorage.removeItem("algorithm_speed")
+  localStorage.removeItem("algorithm")
 }
 clearLocalStorage()
 
@@ -41,6 +53,7 @@ const board = document.getElementsByClassName("board");
 const startBtn = document.getElementById('start_btn')
 
 maze_speed.addEventListener("change", (e) => localStorage.setItem("maze_speed", e.target.value))
+algorithm_speed.addEventListener('change', (e) => localStorage.setItem("algorithm_speed", e.target.value))
 create_maze.addEventListener('click', (e) => selectAndCreateMaze())
 
 startBtn.addEventListener('click', () => {
@@ -84,14 +97,28 @@ const handleSenario = (NodeCell) => {
 
 const startVis = async () => {
   if (step === 3 && entryNode) {
-    await console.time()
-    //await dijkestra(new Node(entryNode, null, entry, 0))
-    a_start2(new Node(entryNode, null, entry, 0), targetNode)
-    await console.timeEnd()
+    const algorithm = localStorage.getItem("algorithm") ? localStorage.getItem("algorithm") : null
+    switch (algorithm) {
+      case "dijkestra": {
+        dijkestra(new Node(entryNode, null, entry, 0))
+        break;
+      }
+      case "a_start": {
+        a_start2(new Node(entryNode, null, entry, 0), targetNode)
+        break;
+      }
+      default: {
+        dijkestra(new Node(entryNode, null, entry, 0))
+        //alert("please select a algorithm")
+      }
+    }
   }
 }
 
 const selectAndCreateMaze = () => {
+  step = 1;
+  entryNode && draw(entryNode, cell)
+  targetNode && forceDraw(targetNode, cell)
   const mazeAlgo = localStorage.getItem("maze_algo")
   backTracker(cells[WIDTH + 1], true)
 }

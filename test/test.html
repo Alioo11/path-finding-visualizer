@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+
+<body>
+
+    <script>
+
+        const T = [
+            {
+                const: 1,
+                node: "something "
+            }
+        ]
+
+        let MinHeap = function () {
+
+            let heap = [null];
+
+            this.insert = function (node) {
+                heap.push(node);
+                if (heap.length > 2) {
+                    let idx = heap.length - 1;
+                    while (heap[idx].cost < heap[Math.floor(idx / 2)].cost) {
+                        if (idx >= 1) {
+                            [heap[Math.floor(idx / 2)].cost, heap[idx].cost] = [heap[idx].cost, heap[Math.floor(idx / 2)].cost];
+                            if (Math.floor(idx / 2) > 1) {
+                                idx = Math.floor(idx / 2);
+                            } else {
+                                break;
+                            };
+                        };
+                    };
+                };
+            };
+            this.print = () => {
+                console.log(this.heap)
+            }
+
+            this.remove = function () {
+                let smallest = heap[1];
+                if (heap.length > 2) {
+                    heap[1].cost = heap[heap.length - 1].cost;
+                    heap.splice(heap.length - 1);
+                    if (heap.length == 3) {
+                        if (heap[1].cost > heap[2].cost) {
+                            [heap[1].cost, heap[2].cost] = [heap[2].cost, heap[1].cost];
+                        };
+                        return smallest;
+                    };
+                    let i = 1;
+                    let left = 2 * i;
+                    let right = 2 * i + 1;
+                    while (heap[i]?.cost >= heap[left]?.cost || heap[i]?.cost >= heap[right]?.cost) {
+                        if (heap[left].cost < heap[right].cost) {
+                            [heap[i].cost, heap[left].cost] = [heap[left].cost, heap[i].cost];
+                            i = 2 * i
+                        } else {
+                            [heap[i].cost, heap[right].cost] = [heap[right].cost, heap[i].cost];
+                            i = 2 * i + 1;
+                        };
+                        left = 2 * i;
+                        right = 2 * i + 1;
+                        if (heap[left]?.cost == undefined || heap[right]?.cost == undefined) {
+                            break;
+                        };
+                    };
+                } else if (heap.length == 2) {
+                    heap.splice(1, 1);
+                } else {
+                    return null;
+                };
+                return smallest;
+            };
+            this.print = function () {
+                console.log(heap)
+                return heap
+            }
+        };
+
+        const heap = new MinHeap()
+
+    </script>
+</body>
+
+</html>
