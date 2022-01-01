@@ -1,10 +1,10 @@
 @keyframes example {
   0% {
-    background-color: white;
+    background-color: rgb(255, 242, 97);
     transform: scale(0.5);
   }
   50% {
-    background-color: rgb(30, 118, 201);
+    background-color: rgb(201, 30, 133);
     transform: scale(1.2);
   }
   100% {
@@ -15,10 +15,16 @@
 
 @keyframes pathAnime {
   0% {
+    transform: scale(0.5);
+    background-color: rgb(255, 42, 42);
+  }
+  50% {
     background-color: white;
+    transform: scale(1.2);
   }
   100% {
     background-color: rgb(255, 211, 34);
+    transform: scale(1);
   }
 }
 
@@ -151,6 +157,7 @@ nav > * {
   font-size: 14px;
   cursor: pointer;
   animation-name: pathAnime;
+  animation-duration: 2s;
 }
 
 .weight {

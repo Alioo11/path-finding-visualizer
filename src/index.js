@@ -1,10 +1,9 @@
 import { draw, writeIn, forceDraw } from './helpers/draw.js'
 import Node from './helpers/Node.js'
-import { dijkestra } from './algorithms/dijkestra.js'
+import { dijkestra } from './algorithms/dijkestra_heap_based.js'
+import { normalDijkestras } from './algorithms/dijkestra_normal.js'
 import { backTracker } from './algorithms/back-tracker.js'
 import { dimentions as DM } from './utils/config.js'
-import { findNeighbours, findNeighbours2 } from './helpers/neighbours.js'
-import { distance } from './helpers/distance.js'
 import { a_start, a_start2 } from './algorithms/a_start.js'
 
 document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
@@ -12,6 +11,9 @@ document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
 })
 document.getElementById("algo_A_start").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "a_start")
+})
+document.getElementById("algo_dijkestra_heap_based").addEventListener('click', (e) => {
+  localStorage.setItem("algorithm", "dijkestra_heap_based")
 })
 
 
@@ -98,9 +100,14 @@ const handleSenario = (NodeCell) => {
 const startVis = async () => {
   if (step === 3 && entryNode) {
     const algorithm = localStorage.getItem("algorithm") ? localStorage.getItem("algorithm") : null
+    console.time()
     switch (algorithm) {
+      case "dijkestra_heap_based": {
+        await dijkestra(new Node(entryNode, null, entry, 0))
+        break;
+      }
       case "dijkestra": {
-        dijkestra(new Node(entryNode, null, entry, 0))
+        await normalDijkestras(new Node(entryNode, null, entry, 0))
         break;
       }
       case "a_start": {
@@ -109,9 +116,9 @@ const startVis = async () => {
       }
       default: {
         dijkestra(new Node(entryNode, null, entry, 0))
-        //alert("please select a algorithm")
       }
     }
+    console.timeEnd()
   }
 }
 

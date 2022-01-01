@@ -11,19 +11,13 @@
 <body>
 
     <script>
-
-        const T = [
-            {
-                const: 1,
-                node: "something "
-            }
-        ]
-
         let MinHeap = function () {
 
             let heap = [null];
 
             this.insert = function (node) {
+                const alreadyHaveItem = heap.reduce((finalRes = false, item) => item.node?.id === node.node?.id ? finalRes = true : finalRes = finalRes)
+                if (alreadyHaveItem) return
                 heap.push(node);
                 if (heap.length > 2) {
                     let idx = heap.length - 1;
@@ -40,13 +34,13 @@
                 };
             };
             this.print = () => {
-                console.log(this.heap)
+                console.log(heap)
             }
 
             this.remove = function () {
                 let smallest = heap[1];
                 if (heap.length > 2) {
-                    heap[1].cost = heap[heap.length - 1].cost;
+                    heap[1] = heap[heap.length - 1];
                     heap.splice(heap.length - 1);
                     if (heap.length == 3) {
                         if (heap[1].cost > heap[2].cost) {
@@ -78,14 +72,64 @@
                 };
                 return smallest;
             };
-            this.print = function () {
-                console.log(heap)
+            this.items = function () {
                 return heap
             }
+            this.best = function () {
+                return heap[1]
+            }
         };
+        const h = new MinHeap()
+        const arrs = [
+            {
+                cost: 15,
+                node: {
+                    id: 1
+                }
+            },
+            {
+                cost: 15,
+                node: {
+                    id: 2
+                }
+            },
+            {
+                cost: 15,
+                node: {
+                    id: 3
+                }
+            },
+            {
+                cost: 15,
+                node: {
+                    id: 4
+                }
+            },
+            {
+                cost: 15,
+                node: {
+                    id: 5
+                }
+            },
+            {
+                cost: 15,
+                node: {
+                    id: 1
+                }
+            },
+            {
+                cost: 15,
+                node: {
+                    id: 1
+                }
+            },
 
-        const heap = new MinHeap()
-
+        ]
+        arrs.forEach((item) => {
+            h.insert(item)
+        })
+        h.remove()
+        h.print()
     </script>
 </body>
 
