@@ -1,6 +1,6 @@
 export function dimentions() {
     let WIDTH = (parseInt(window.innerWidth / 30) - 2) % 2 === 0 ? (parseInt(window.innerWidth / 30) - 3) : (parseInt(window.innerWidth / 30) - 2);
-    let HEIGHT = 37;
+    let HEIGHT = window.innerWidth < 400 ? (parseInt(window.innerHeight / 30) - 3) : (parseInt(window.innerHeight / 30) - 3) - 2;
     let running = false;
     let algorithm = null
     let mazeAlgorithm = null;

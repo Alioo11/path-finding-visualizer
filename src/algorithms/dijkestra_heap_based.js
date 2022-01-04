@@ -4,15 +4,24 @@ import Myset from "../helpers/mySet.js";
 import { onWaiting } from '../helpers/wait.js'
 import { findNeighbours } from "../helpers/neighbours.js";
 import { visPath } from '../helpers/visPath.js'
+import BST from '../helpers/BST.js'
+
+//?this is a BST 
+
+//?this is a BST
+
 
 //! this is a test case 
 let MinHeap = function () {
 
   let heap = [null];
-
+  let binarySearchTree = new BST()
   this.insert = function (node) {
-    const alreadyHaveItem = heap.reduce((finalRes = false, item) => item.node?.id === node.node?.id ? finalRes = true : finalRes = finalRes)
+    //console.log(parseInt(node.node.id))
+    const alreadyHaveItem = binarySearchTree.find(parseInt(node.node?.id))
+    //const alreadyHaveItem = heap.reduce((finalRes = false, item) => item.node?.id === node.node?.id ? finalRes = true : finalRes = finalRes)
     if (alreadyHaveItem) return
+    binarySearchTree.add(parseInt(node.node?.id))
     heap.push(node);
     if (heap.length > 2) {
       let idx = heap.length - 1;
@@ -66,6 +75,7 @@ let MinHeap = function () {
     // console.log(smallest)
     // console.log("%cthis is the result after removing what I told you", "background : purple")
     // console.table(heap)
+    binarySearchTree.remove(parseInt(smallest.node.id))
     return smallest;
 
   };

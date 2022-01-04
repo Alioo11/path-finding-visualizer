@@ -145,8 +145,9 @@ nav > * {
   background-color: rgb(34, 148, 255);
   font-size: 14px;
   cursor: pointer;
-  animation-duration: 1100ms;
+  animation-duration: 2000ms;
   animation-name: example;
+  font-weight: 900;
 }
 .path {
   background-color: rgb(255, 211, 34);
@@ -169,6 +170,9 @@ nav > * {
 
 .wall {
   background-color: rgb(48, 48, 48);
+  border: 1px solid rgb(94, 94, 94);
+  border-bottom: none;
+  border-right: none;
   /* box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8) inset; */
   display: flex;
   justify-content: center;
@@ -199,6 +203,20 @@ nav > * {
   color: gray;
   cursor: pointer;
 }
+.candidate { 
+    background-color: rgb(160, 160, 160);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 900;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
 
-@media only screen and (max-width: 768px) {
+
+@media only screen and (max-width: 400px) {
+  .board {
+    width: 100%;
+  }
 }
