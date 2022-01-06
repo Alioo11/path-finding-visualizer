@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Alioo11/path-finding-visualizer/issues"
   },
-  "homepage": "https://github.com/Alioo11/path-finding-visualizer#readme"
+  "homepage": "https://github.com/Alioo11/path-finding-visualizer#readme",
+  "dependencies": {
+    "minify-all-js": "^0.1.8"
+  }
 }
