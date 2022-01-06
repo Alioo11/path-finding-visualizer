@@ -4,6 +4,7 @@ import { findNeighbours } from "../helpers/neighbours.js";
 import { visPath } from './../helpers/visPath.js'
 import { distance } from "../helpers/distance.js";
 import { dimentions } from "../utils/config.js";
+import { waitTillUserClick} from '../index.js'
 
 const scaning = "scaning";
 const path = "path";
@@ -11,8 +12,9 @@ const wall = "wall";
 const target = "target";
 const entry = "entry";
 const weight = 'weight'
+const candidate = 'candidate'
 
-
+let isDetailMood = localStorage.getItem('detail-mode') ? localStorage.getItem('detail-mode') : false
 
 function Node(node, orgin, type, cost, heuristic) {
   this.node = node;
@@ -104,6 +106,10 @@ export const a_start2 = (startingNode, endNode) => {
   const NodeList = [];
   const possibleRouts = new set();
   const iteration = async (nodeLoop, firstTime) => {
+    isDetailMood = localStorage.getItem("detail-mode")
+    if (isDetailMood && isDetailMood !== 'false') {
+      await waitTillUserClick()
+    }
     NodeList.push(nodeLoop);
     draw(nodeLoop.node, firstTime ? entry : scaning);
     writeIn(nodeLoop.node, `C:${nodeLoop.cost} <br/> H:${nodeLoop.cost == 0 ? 0 : nodeLoop.heuristic}`)
@@ -117,9 +123,9 @@ export const a_start2 = (startingNode, endNode) => {
       const cost = nodeLoop.cost + (item.className === weight ? 10 : 1);
       const heuristic = distance(item, endNode);
       const newNode = new Node(item, nodeLoop, scaning, cost, heuristic);
-      //console.log(item.className == weight)
-      //console.log()
-      //console.log(newNode)
+      isDetailMood && draw(item, candidate)
+     // isDetailMood && writeIn(item, `c:${newNode.cost}`)
+      isDetailMood && writeIn(item , `C:${newNode.cost} <br/> H:${newNode.cost == 0 ? 0 : newNode.heuristic}`)
       possibleRouts.add(newNode);
     });
     iteration(possibleRouts.findBestNode());

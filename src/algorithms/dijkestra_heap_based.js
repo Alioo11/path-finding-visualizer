@@ -5,11 +5,14 @@ import { onWaiting } from '../helpers/wait.js'
 import { findNeighbours } from "../helpers/neighbours.js";
 import { visPath } from '../helpers/visPath.js'
 import BST from '../helpers/BST.js'
+import { waitTillUserClick} from '../index.js'
 
 //?this is a BST 
 
 //?this is a BST
 
+
+let isDetailMood = localStorage.getItem('detail-mode') ? localStorage.getItem('detail-mode') : false
 
 //! this is a test case 
 let MinHeap = function () {
@@ -100,6 +103,7 @@ const wall = "wall";
 const target = "target";
 const entry = "entry";
 const weight = 'weight'
+const candidate = 'candidate'
 
 let count = 0
 
@@ -108,6 +112,10 @@ export const dijkestra = async (startingNode) => {
     const NodeList = [];
     const possibleRouts = new MinHeap();
     const iteration = async (nodeLoop, firstTime) => {
+      isDetailMood = localStorage.getItem("detail-mode")
+      if (isDetailMood && isDetailMood !== 'false') {
+        await waitTillUserClick()
+      }
       // console.log(`%c${count}`, "background : blue ")
       // console.log('%c this is the one choosen from the last time', "background : green")
       // console.log(nodeLoop)
@@ -123,6 +131,8 @@ export const dijkestra = async (startingNode) => {
 
       findNeighbours(nodeLoop.node).forEach((item) => {
         const newNode = new Node(item, nodeLoop, scaning, nodeLoop.cost + (item.className === weight ? 10 : 1));
+        isDetailMood && draw(item, candidate)
+        isDetailMood && writeIn(item, `c:${newNode.cost}`)
         possibleRouts.insert(newNode);
       });
       iteration(possibleRouts.best());

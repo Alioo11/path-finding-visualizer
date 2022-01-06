@@ -5,6 +5,9 @@ export function dimentions() {
     let algorithm = null
     let mazeAlgorithm = null;
 
+    localStorage.setItem("WIDTH" , WIDTH)
+    localStorage.setItem("HEIGHT" , HEIGHT)
+
 
     this.getWidth = () => WIDTH
     this.getHeight = () => HEIGHT

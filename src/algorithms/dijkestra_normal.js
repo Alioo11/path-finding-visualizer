@@ -4,10 +4,13 @@ import Myset from "../helpers/mySet.js";
 import { onWaiting } from './../helpers/wait.js'
 import { findNeighbours } from "../helpers/neighbours.js";
 import { visPath } from './../helpers/visPath.js'
+import { waitTillUserClick} from '../index.js'
 
 const set = Myset
 
 let delayTime = 0;
+let isDetailMood = localStorage.getItem('detail-mode') ? localStorage.getItem('detail-mode') : false;
+
 
 const scaning = "scaning";
 const path = "path";
@@ -22,6 +25,9 @@ export const normalDijkestras = (startingNode) => {
         const NodeList = [];
         const possibleRouts = new set();
         const iteration = async (nodeLoop, firstTime) => {
+            isDetailMood = localStorage.getItem("detail-mode")
+            if (isDetailMood && isDetailMood !== 'false') {
+                await waitTillUserClick()}
             NodeList.push(nodeLoop);
             draw(nodeLoop.node, firstTime ? entry : scaning);
             firstTime ? delayTime = (5 - localStorage.getItem("algorithm_speed")) * 20 + 2 : 15;
@@ -33,9 +39,9 @@ export const normalDijkestras = (startingNode) => {
             const res = await onWaiting(delayTime);
             possibleRouts.delete(nodeLoop);
             findNeighbours(nodeLoop.node).forEach((item) => {
-                const newNode = new Node(item, nodeLoop, scaning, nodeLoop.cost + (item.className === weight ? 10 : 1));
-                //draw(item, candidate)
-                //writeIn(item , `c:${newNode.cost}`)
+                const newNode = new Node(item, nodeLoop, scaning, nodeLoop.cost + (item.className === weight ? 30 : 1));
+                isDetailMood && draw(item, candidate)
+                isDetailMood && writeIn(item , `c:${newNode.cost}`)
                 possibleRouts.add(newNode);
             });
             iteration(possibleRouts.findBestNode());

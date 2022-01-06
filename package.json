@@ -1,0 +1,23 @@
+{
+  "name": "pathfindingvis",
+  "version": "1.0.0",
+  "description": "![preview](https://user-images.githubusercontent.com/79578428/148079541-373aa759-c2e9-412c-b560-cc3e18e4b2ce.gif)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alioo11/path-finding-visualizer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alioo11/path-finding-visualizer/issues"
+  },
+  "homepage": "https://github.com/Alioo11/path-finding-visualizer#readme"
+}

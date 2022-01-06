@@ -78,8 +78,8 @@ export const backTracker = async (NodeCell, firstTime) => {
         const randomNode = possibleRouts[getRandomArbitrary(0, possibleRouts.length)]
         visitedNodes.push(randomNode)
         const betWeenCell = findInBetween(NodeCell, visitedNodes[visitedNodes.length - 1])
-        draw(betWeenCell, cell)
-        draw(visitedNodes[visitedNodes.length - 1], cell)
+        draw(betWeenCell, cell , {animationDuration:1000})
+        draw(visitedNodes[visitedNodes.length - 1], cell, { animationDuration: 500 })
     }
     draw(NodeCell, cell)
     backTracker(visitedNodes[visitedNodes.length - 1])

@@ -15,7 +15,10 @@ document.getElementById("algo_A_start").addEventListener('click', (e) => {
 document.getElementById("algo_dijkestra_heap_based").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra_heap_based")
 })
-
+const detailMood = document.getElementById("detail-mode")
+document.getElementById("detail-mode").addEventListener('click' ,()=>{
+  handleCheckbox()
+})
 
 const maze_speed = document.getElementById("maze_algorithm_speed")
 const algorithm_speed = document.getElementById("algorithm_speed")
@@ -44,12 +47,32 @@ const entry = "entry";
 const weight = 'weight'
 const cell = "cell"
 
-function clearLocalStorage() {
+const handleCheckbox = ()=>{
+  //console.log(detailMood.checked);
+  localStorage.setItem('detail-mode', detailMood.checked)
+}
+
+export const waitTillUserClick = ()=>{
+  return new Promise((resolve , reject)=>{
+    document.addEventListener('keydown' , (e)=>{
+      if(e.key === 'f' || e.key == 'F'){
+      return resolve()  
+      }
+    })
+  })
+}
+
+function init() {
+
+  //? init the start and end points 
+  //! here we init where the start point is and wher ethe end point is Ha Ha h
+  //? cleaning the local storate 
   localStorage.removeItem("maze_speed")
   localStorage.removeItem("algorithm_speed")
   localStorage.removeItem("algorithm")
+  localStorage.removeItem("detail-mode")
 }
-clearLocalStorage()
+init()
 
 const board = document.getElementsByClassName("board");
 const startBtn = document.getElementById('start_btn')
@@ -83,7 +106,7 @@ const handleSenario = (NodeCell) => {
       break;
     }
     case 1: {
-      draw(NodeCell, target)
+      draw(NodeCell, target , {animationDuration: 300 , Enable:true})
       targetNode = NodeCell;
       step += 1
       break;
@@ -115,7 +138,8 @@ const startVis = async () => {
         break;
       }
       default: {
-        dijkestra(new Node(entryNode, null, entry, 0))
+        await normalDijkestras(new Node(entryNode, null, entry, 0))
+        break;
       }
     }
     console.timeEnd()
@@ -152,7 +176,7 @@ cells.forEach((cellNode) => {
     //isXActive && draw(e.target, weight);
     if (isXActive) {
       draw(e.target, weight)
-      writeIn(e.target, 10)
+      writeIn(e.target, 3)
     }
     if (isWActive) {
       draw(e.target, wall)
