@@ -127,7 +127,7 @@ export const dijkestra = async (startingNode) => {
         visPath(nodeLoop);
         return resolve();
       }
-      const res = await onWaiting(delayTime);
+      const res = await onWaiting(1);
 
       findNeighbours(nodeLoop.node).forEach((item) => {
         const newNode = new Node(item, nodeLoop, scaning, nodeLoop.cost + (item.className === weight ? 10 : 1));

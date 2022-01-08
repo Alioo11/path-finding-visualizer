@@ -5,6 +5,7 @@ import { normalDijkestras } from './algorithms/dijkestra_normal.js'
 import { backTracker } from './algorithms/back-tracker.js'
 import { dimentions as DM } from './utils/config.js'
 import { a_start, a_start2 } from './algorithms/a_start.js'
+import {greedy} from './algorithms/greedy.js'
 
 document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra")
@@ -15,6 +16,11 @@ document.getElementById("algo_A_start").addEventListener('click', (e) => {
 document.getElementById("algo_dijkestra_heap_based").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra_heap_based")
 })
+
+document.getElementById("algo_greedy").addEventListener('click', (e) => {
+  localStorage.setItem("algorithm", "greedy")
+})
+
 const detailMood = document.getElementById("detail-mode")
 document.getElementById("detail-mode").addEventListener('click' ,()=>{
   handleCheckbox()
@@ -106,7 +112,7 @@ const handleSenario = (NodeCell) => {
       break;
     }
     case 1: {
-      draw(NodeCell, target , {animationDuration: 300 , Enable:true})
+      draw(NodeCell, target )
       targetNode = NodeCell;
       step += 1
       break;
@@ -137,8 +143,14 @@ const startVis = async () => {
         a_start2(new Node(entryNode, null, entry, 0), targetNode)
         break;
       }
+      case "greedy": {
+        greedy(new Node(entryNode, null, entry, 0), targetNode)
+        //! this is where we use greedy algorithm hahaha
+        break;
+      }
       default: {
-        await normalDijkestras(new Node(entryNode, null, entry, 0))
+        greedy(new Node(entryNode, null, entry, 0), targetNode)
+        //! this is where we use greedy algorithm hahaha
         break;
       }
     }
@@ -179,7 +191,7 @@ cells.forEach((cellNode) => {
       writeIn(e.target, 3)
     }
     if (isWActive) {
-      draw(e.target, wall)
+      draw(e.target, wall )
     }
     if (isEActive) {
       draw(e.target, cell)

@@ -15,7 +15,7 @@ export const visPath = async (finalNode) => {
     finalNode = finalNode.orgin;
   }
   for (let i = revPath.length - 1; i >= 0; i--) {
-    const waitingResult = await onWaiting();
+    const waitingResult = await onWaiting(10);
     draw(revPath[i], path);
   }
 };

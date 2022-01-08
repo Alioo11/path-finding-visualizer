@@ -11,15 +11,13 @@
 
 @keyframes pathAnime {
   0% {
-    transform: scale(0.5);
-    background-color: rgb(255, 42, 42);
+    transform: scale(0.1);
   }
   50% {
-    background-color: white;
-    transform: scale(1.2);
+    transform: scale(1.4);
   }
   100% {
-    background-color: rgb(255, 211, 34);
+    background-color: rgb(34, 255, 104);
     transform: scale(1);
   }
 }
@@ -29,7 +27,7 @@
     transform: scale(0.5);
   }
   100% {
-    transform: scale(1.3);
+    transform: scale(1);
   }
 }
 
@@ -212,15 +210,15 @@ input:checked + .slider:before {
   font-weight: 900;
 }
 .path {
-  background-color: rgb(255, 211, 34);
-  box-shadow: 0px 0px 18px rgba(255, 211, 54);
+  background-color: rgb(34, 255, 104);
+  /* box-shadow: 0px 0px 18px rgba(255, 211, 54); */
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 14px;
   cursor: pointer;
   animation-name: pathAnime;
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 
 .weight {
@@ -243,12 +241,15 @@ input:checked + .slider:before {
   font-size: 14px;
   color: gray;
   cursor: pointer;
-  /* animation-duration: 200ms;
-  animation-name: wallAnime; */
+  animation-name: wallAnime;
 }
 .target {
-  background-color: rgb(255, 67, 67);
-  box-shadow: 2px 2px 3px rgba(255, 67, 67, 0.5) inset;
+  background-image: url("./media/destination.png");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  border : solid 1px rgb(213, 213, 213);
+  border-top:none;
+  border-left: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -258,8 +259,14 @@ input:checked + .slider:before {
   animation-name: pathAnime;
 }
 .entry {
-  background-color: rgb(115, 183, 255);
-  box-shadow: 2px 2px 3px rgba(133, 192, 255, 0.5) inset;
+  /* background-color: rgb(255, 67, 67); */
+  background-image: url("./media/arrow\ .png");
+  transform: rotate(-90deg);
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  border : solid 1px rgb(213, 213, 213);
+  border-top:none;
+  border-right: none;
   display: flex;
   justify-content: center;
   align-items: center;
