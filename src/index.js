@@ -5,7 +5,7 @@ import { normalDijkestras, normalDijkestras_realTime } from './algorithms/dijkes
 import { backTracker } from './algorithms/back-tracker.js'
 import { dimentions as DM } from './utils/config.js'
 import { a_start, a_start2, a_start_realTime} from './algorithms/a_start.js'
-import {greedy} from './algorithms/greedy.js'
+import { greedy, greedy_realTime} from './algorithms/greedy.js'
 import { visPath } from './helpers/visPath.js'
 
 document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
@@ -169,15 +169,19 @@ const startVis = async (fast_forward) => {
           a_start_realTime(new Node(entryNode, null, entry, 0), targetNode)
           break;
         }else{
-                  await a_start2(new Node(entryNode, null, entry, 0), targetNode)
+          await a_start2(new Node(entryNode, null, entry, 0), targetNode)
         break;
         }
 
       }
       case "greedy": {
-        greedy(new Node(entryNode, null, entry, 0), targetNode)
-        //! this is where we use greedy algorithm hahaha
-        break;
+        if(fast_forward){
+          greedy_realTime(new Node(entryNode, null, entry, 0), targetNode)
+          break;
+        }else{
+          greedy(new Node(entryNode, null, entry, 0), targetNode)
+          break;
+        }
       }
       default: {
         if (fast_forward) {
