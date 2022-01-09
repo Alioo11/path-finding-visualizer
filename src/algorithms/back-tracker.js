@@ -26,7 +26,7 @@ const cell = 'cell'
 
 const FillBoard = async () => {
     for (let i = 0; i < HEIGHT; i++) {
-        await onWaiting(10)
+        await onWaiting(2)
         for (let j = 0; j < WIDTH; j++) {
             draw(cells[WIDTH * i + j], wall)
         }
@@ -69,7 +69,7 @@ export const backTracker = async (NodeCell, firstTime) => {
 
     if (visitedNodes.length === 0) return
     draw(NodeCell, path)
-    await onWaiting(delayTime)
+    await onWaiting(1)
 
     const possibleRouts = findNeighbours2(visitedNodes[visitedNodes.length - 1], 2).filter((routItem) => routItem.className !== 'cell')
     if (possibleRouts.length === 0) {

@@ -46,7 +46,7 @@ function Myset() {
   };
   this.findBestNode = () => {
     this.bestNode = this.collection.reduce((all, current) => {
-      return all.cost + all.heuristic * 2 > current.cost + current.heuristic * 2 ? current : all;
+      return all.cost + all.heuristic  > current.cost + current.heuristic ? current : all;
 
     });
     // console.log(this.bestNode)

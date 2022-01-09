@@ -1,10 +1,40 @@
 @keyframes example {
   0% {
-    background-color: rgb(255, 243, 109);
-    transform: scale(0.2);
+    background-color: rgb(255, 255, 255);
+    transform: scale(0.5);
   }
   50% {
-    background-color: rgb(235, 50, 53);
+    background-color: rgb(50, 140, 235);
+    transform: scale(1.1);
+  }
+    100% {
+    background-color: rgb(34, 148, 255);
+    transform: scale(1);
+  }
+}
+@keyframes spring {
+  0% {
+    background-color: rgb(255, 255, 255);
+    transform: scale(0.5);
+  }
+  20% {
+    background-color: rgb(67, 255, 205);
+    transform: scale(1.5);
+  }
+  40% {
+    background-color: rgb(50, 140, 235);
+    transform: scale(0.9);
+  }
+  60% {
+    background-color: rgb(50, 140, 235);
+    transform: scale(1.2);
+  }
+  80% {
+    background-color: rgb(50, 140, 235);
+    transform: scale(1);
+  }
+  100% {
+    background-color: rgb(50, 140, 235);
     transform: scale(1.1);
   }
 }
@@ -80,7 +110,9 @@ body {
 .nav-item :first-child{
   margin:  0 10px;
 }
-
+nav{
+  width : 100%;
+}
 .slider {
   position: absolute;
   cursor: pointer;
@@ -205,7 +237,7 @@ input:checked + .slider:before {
   background-color: rgb(34, 148, 255);
   font-size: 14px;
   /* animation-duration: 500ms; */
-  animation-name: example;
+  animation-name: spring;
   font-weight: 900;
 }
 .path {

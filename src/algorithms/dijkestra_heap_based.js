@@ -12,6 +12,23 @@ import { waitTillUserClick} from '../index.js'
 //?this is a BST
 
 
+const scaning = "scaning";
+const path = "path";
+const wall = "wall";
+const target = "target";
+const entry = "entry";
+const weight = 'weight'
+const candidate = 'candidate'
+const cell = 'cell'
+const clearBoard = (nodes) => {
+  nodes.forEach((cellNode) => {
+    if (!(cellNode.node.className == wall || cellNode.node.className == weight)) {
+      draw(cellNode.node, cell)
+      writeIn(cellNode.node, '')
+    }
+  })
+}
+
 let isDetailMood = localStorage.getItem('detail-mode') ? localStorage.getItem('detail-mode') : false
 
 //! this is a test case 
@@ -20,7 +37,6 @@ let MinHeap = function () {
   let heap = [null];
   let binarySearchTree = new BST()
   this.insert = function (node) {
-    //console.log(parseInt(node.node.id))
     const alreadyHaveItem = binarySearchTree.find(parseInt(node.node?.id))
     //const alreadyHaveItem = heap.reduce((finalRes = false, item) => item.node?.id === node.node?.id ? finalRes = true : finalRes = finalRes)
     if (alreadyHaveItem) return
@@ -50,7 +66,7 @@ let MinHeap = function () {
         if (heap[1].cost > heap[2].cost) {
           [heap[1], heap[2]] = [heap[2], heap[1]];
         };
-        return smallest;
+        return smallest ;
       };
       let i = 1;
       let left = 2 * i;
@@ -74,13 +90,8 @@ let MinHeap = function () {
     } else {
       return null;
     };
-    // console.log('%c removing this item :', "background : red")
-    // console.log(smallest)
-    // console.log("%cthis is the result after removing what I told you", "background : purple")
-    // console.table(heap)
     binarySearchTree.remove(parseInt(smallest.node.id))
     return smallest;
-
   };
   this.items = function () {
     return heap
@@ -95,32 +106,24 @@ let MinHeap = function () {
 
 //const set = Myset
 
+let NodeList = [];
+
 let delayTime = 0;
 
-const scaning = "scaning";
-const path = "path";
-const wall = "wall";
-const target = "target";
-const entry = "entry";
-const weight = 'weight'
-const candidate = 'candidate'
 
 let count = 0
 
 export const dijkestra = async (startingNode) => {
   return new Promise((resolve, reject) => {
-    const NodeList = [];
+
     const possibleRouts = new MinHeap();
     const iteration = async (nodeLoop, firstTime) => {
       isDetailMood = localStorage.getItem("detail-mode")
       if (isDetailMood && isDetailMood !== 'false') {
         await waitTillUserClick()
       }
-      // console.log(`%c${count}`, "background : blue ")
-      // console.log('%c this is the one choosen from the last time', "background : green")
-      // console.log(nodeLoop)
       NodeList.push(nodeLoop);
-      draw(nodeLoop.node, firstTime ? entry : scaning);
+      draw(nodeLoop.node, firstTime ? entry : scaning , {animationDuration:500});
       firstTime ? delayTime = (5 - localStorage.getItem("algorithm_speed")) * 20 + 2 : 15;
       writeIn(nodeLoop.node, `c:${nodeLoop.cost}`)
       if (nodeLoop.node.className === target) {
@@ -142,4 +145,37 @@ export const dijkestra = async (startingNode) => {
     };
     return iteration(startingNode, true);
   })
+};
+
+export const dijkestra_realTime =  (startingNode) => {
+    const possibleRouts = new MinHeap();
+    const iteration = async  (nodeLoop, firstTime) => {
+      count ++
+      if(firstTime){
+        clearBoard(NodeList)
+      }
+      NodeList.push(nodeLoop);
+      draw(nodeLoop.node, firstTime ? entry : scaning);
+
+      if (nodeLoop.node.className === target) {
+        const revPath = [];
+        while (nodeLoop.orgin !== null) {
+          revPath.push(nodeLoop.node);
+          nodeLoop = nodeLoop.orgin;
+        }
+        for (let i = revPath.length - 1; i >= 0; i--) {
+          draw(revPath[i], path);
+        }
+        return 
+      }
+      findNeighbours(nodeLoop.node).forEach((item) => {
+        const newNode = new Node(item, nodeLoop, scaning, nodeLoop.cost + (item.className === weight ? 10 : 1));
+
+        possibleRouts.insert(newNode);
+      });
+      possibleRouts.remove();
+      iteration(possibleRouts.best());
+      
+    };
+    return iteration(startingNode, true);
 };

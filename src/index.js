@@ -1,6 +1,6 @@
 import { draw, writeIn, forceDraw } from './helpers/draw.js'
 import Node from './helpers/Node.js'
-import { dijkestra } from './algorithms/dijkestra_heap_based.js'
+import { dijkestra, dijkestra_realTime } from './algorithms/dijkestra_heap_based.js'
 import { normalDijkestras, normalDijkestras_realTime } from './algorithms/dijkestra_normal.js'
 import { backTracker } from './algorithms/back-tracker.js'
 import { dimentions as DM } from './utils/config.js'
@@ -148,13 +148,16 @@ const startVis = async (fast_forward) => {
     console.time()
     switch (algorithm) {
       case "dijkestra_heap_based": {
+        if(fast_forward){
+        dijkestra_realTime(new Node(entryNode, null, entry, 0))
+        break;
+        }
         await dijkestra(new Node(entryNode, null, entry, 0))
         break;
       }
       case "dijkestra": {
         if (fast_forward){
-          const nodes =  normalDijkestras_realTime(new Node(entryNode, null, entry, 0))
-          console.log(nodes)
+          normalDijkestras_realTime(new Node(entryNode, null, entry, 0))
           break;
         }else{
           await normalDijkestras(new Node(entryNode, null, entry, 0))
@@ -171,8 +174,9 @@ const startVis = async (fast_forward) => {
         break;
       }
       default: {
-        greedy(new Node(entryNode, null, entry, 0), targetNode)
-        //! this is where we use greedy algorithm hahaha
+        if(!fast_forward){
+         await dijkestra(new Node(entryNode, null, entry, 0)) 
+        }
         break;
       }
     }
