@@ -19,7 +19,7 @@
   }
   20% {
     background-color: rgb(67, 255, 205);
-    transform: scale(1.5);
+    transform: scale(1.3);
   }
   40% {
     background-color: rgb(50, 140, 235);
@@ -314,6 +314,10 @@ input:checked + .slider:before {
   display: flex;
   width: 100%;
   min-width: 11rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0rem 2rem;
+  color: rgba(0,0,0,.5);
 }
 
 

@@ -6,6 +6,8 @@ import { distance } from "../helpers/distance.js";
 import { dimentions } from "../utils/config.js";
 import { waitTillUserClick} from '../index.js'
 
+
+
 const scaning = "scaning";
 const path = "path";
 const wall = "wall";
@@ -13,6 +15,16 @@ const target = "target";
 const entry = "entry";
 const weight = 'weight'
 const candidate = 'candidate'
+const cell = 'cell'
+
+const clearBoard = (nodes) => {
+  nodes.forEach((cellNode) => {
+    if (!(cellNode.node.className == wall || cellNode.node.className == weight)) {
+      draw(cellNode.node, cell)
+      writeIn(cellNode.node, '')
+    }
+  })
+}
 
 let isDetailMood = localStorage.getItem('detail-mode') ? localStorage.getItem('detail-mode') : false
 
@@ -101,23 +113,25 @@ export const a_start = (startNode, endNode) => {
   }
   interation(startNode, true)
 }
+let delayTime =0;
+let NodeList = [];
 
 export const a_start2 = (startingNode, endNode) => {
-  const NodeList = [];
   const possibleRouts = new set();
   const iteration = async (nodeLoop, firstTime) => {
+    firstTime ? delayTime = (5 - localStorage.getItem("algorithm_speed")) * 20 + 2 : 15;
     isDetailMood = localStorage.getItem("detail-mode")
     if (isDetailMood && isDetailMood !== 'false') {
       await waitTillUserClick()
     }
     NodeList.push(nodeLoop);
-    draw(nodeLoop.node, firstTime ? entry : scaning);
+    draw(nodeLoop.node, firstTime ? entry : scaning , {animationDuration:500});
     writeIn(nodeLoop.node, `C:${nodeLoop.cost} <br/> H:${nodeLoop.cost == 0 ? 0 : nodeLoop.heuristic}`)
     if (nodeLoop.node.className === target) {
       visPath(nodeLoop);
       return;
     }
-    const res = await onWaiting(50);
+    const res = await onWaiting(delayTime);
     possibleRouts.delete(nodeLoop);
     findNeighbours(nodeLoop.node).forEach((item) => {
       const cost = nodeLoop.cost + (item.className === weight ? 10 : 1);
@@ -126,6 +140,37 @@ export const a_start2 = (startingNode, endNode) => {
       isDetailMood && draw(item, candidate)
      // isDetailMood && writeIn(item, `c:${newNode.cost}`)
       isDetailMood && writeIn(item , `C:${newNode.cost} <br/> H:${newNode.cost == 0 ? 0 : newNode.heuristic}`)
+      possibleRouts.add(newNode);
+    });
+    iteration(possibleRouts.findBestNode());
+  };
+  return iteration(startingNode, true);
+};
+
+export const a_start_realTime = (startingNode, endNode) => {
+  const possibleRouts = new set();
+  const iteration = (nodeLoop, firstTime) => {
+    NodeList.push(nodeLoop);
+    if(firstTime){
+      clearBoard(NodeList)
+    }
+    draw(nodeLoop.node, firstTime ? entry : scaning);
+    if (nodeLoop.node.className === target) {
+      const revPath = [];
+      while (nodeLoop.orgin !== null) {
+        revPath.push(nodeLoop.node);
+        nodeLoop = nodeLoop.orgin;
+      }
+      for (let i = revPath.length - 1; i >= 0; i--) {
+        draw(revPath[i], path);
+      }
+      return 
+    }
+    possibleRouts.delete(nodeLoop);
+    findNeighbours(nodeLoop.node).forEach((item) => {
+      const cost = nodeLoop.cost + (item.className === weight ? 10 : 1);
+      const heuristic = distance(item, endNode);
+      const newNode = new Node(item, nodeLoop, scaning, cost, heuristic);
       possibleRouts.add(newNode);
     });
     iteration(possibleRouts.findBestNode());

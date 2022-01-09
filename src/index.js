@@ -4,7 +4,7 @@ import { dijkestra, dijkestra_realTime } from './algorithms/dijkestra_heap_based
 import { normalDijkestras, normalDijkestras_realTime } from './algorithms/dijkestra_normal.js'
 import { backTracker } from './algorithms/back-tracker.js'
 import { dimentions as DM } from './utils/config.js'
-import { a_start, a_start2 } from './algorithms/a_start.js'
+import { a_start, a_start2, a_start_realTime} from './algorithms/a_start.js'
 import {greedy} from './algorithms/greedy.js'
 import { visPath } from './helpers/visPath.js'
 
@@ -165,8 +165,14 @@ const startVis = async (fast_forward) => {
         }
       }
       case "a_start": {
-        a_start2(new Node(entryNode, null, entry, 0), targetNode)
+        if(fast_forward){
+          a_start_realTime(new Node(entryNode, null, entry, 0), targetNode)
+          break;
+        }else{
+                  await a_start2(new Node(entryNode, null, entry, 0), targetNode)
         break;
+        }
+
       }
       case "greedy": {
         greedy(new Node(entryNode, null, entry, 0), targetNode)
@@ -174,10 +180,13 @@ const startVis = async (fast_forward) => {
         break;
       }
       default: {
-        if(!fast_forward){
-         await dijkestra(new Node(entryNode, null, entry, 0)) 
+        if (fast_forward) {
+          normalDijkestras_realTime(new Node(entryNode, null, entry, 0))
+          break;
+        } else {
+          await normalDijkestras(new Node(entryNode, null, entry, 0))
+          break;
         }
-        break;
       }
     }
     console.timeEnd()
