@@ -1,11 +1,12 @@
 import { draw, writeIn, forceDraw } from './helpers/draw.js'
 import Node from './helpers/Node.js'
 import { dijkestra } from './algorithms/dijkestra_heap_based.js'
-import { normalDijkestras } from './algorithms/dijkestra_normal.js'
+import { normalDijkestras, normalDijkestras_realTime } from './algorithms/dijkestra_normal.js'
 import { backTracker } from './algorithms/back-tracker.js'
 import { dimentions as DM } from './utils/config.js'
 import { a_start, a_start2 } from './algorithms/a_start.js'
 import {greedy} from './algorithms/greedy.js'
+import { visPath } from './helpers/visPath.js'
 
 document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra")
@@ -20,7 +21,6 @@ document.getElementById("algo_dijkestra_heap_based").addEventListener('click', (
 document.getElementById("algo_greedy").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "greedy")
 })
-
 const detailMood = document.getElementById("detail-mode")
 document.getElementById("detail-mode").addEventListener('click' ,()=>{
   handleCheckbox()
@@ -44,6 +44,23 @@ const HEIGHT = dimentions.getHeight()
 let isXActive = false;
 let isWActive = false;
 let isEActive = false;
+let hodingClick = false;
+let hodledElement = null;
+let tempNode = null
+
+document.addEventListener('mousedown', (e) => {
+  if (e.target.className == "entry" || e.target.className == "target"){
+    hodledElement = e.target.className
+    hodingClick = true;
+  }
+  //TODO                                                                       don't forget to change cursor icon 
+} )
+
+
+document.addEventListener('mouseup', (e) =>{ 
+  hodingClick = false
+  hodledElement = null
+})
 
 const scaning = "scaning";
 const path = "path";
@@ -54,7 +71,6 @@ const weight = 'weight'
 const cell = "cell"
 
 const handleCheckbox = ()=>{
-  //console.log(detailMood.checked);
   localStorage.setItem('detail-mode', detailMood.checked)
 }
 
@@ -126,7 +142,7 @@ const handleSenario = (NodeCell) => {
   }
 }
 
-const startVis = async () => {
+const startVis = async (fast_forward) => {
   if (step === 3 && entryNode) {
     const algorithm = localStorage.getItem("algorithm") ? localStorage.getItem("algorithm") : null
     console.time()
@@ -136,8 +152,14 @@ const startVis = async () => {
         break;
       }
       case "dijkestra": {
-        await normalDijkestras(new Node(entryNode, null, entry, 0))
+        if (fast_forward){
+          const nodes =  normalDijkestras_realTime(new Node(entryNode, null, entry, 0))
+          console.log(nodes)
+          break;
+        }else{
+          await normalDijkestras(new Node(entryNode, null, entry, 0))
         break;
+        }
       }
       case "a_start": {
         a_start2(new Node(entryNode, null, entry, 0), targetNode)
@@ -176,12 +198,20 @@ window.addEventListener("keydown", (e) => {
   isXActive = e.key === "x";
   isWActive = e.key === "w";
   isEActive = e.key === "e";
+  e.key == "v" && startVis()
+  e.key == "m" && selectAndCreateMaze()
 });
 window.addEventListener("keyup", () => {
   isXActive = false;
   isWActive = false;
   isEActive = false;
 });
+
+const clearBoard = ()=>{
+  cells.forEach((cellNode) => {
+    !(cellNode.className == wall || cellNode.className == weight) && draw(cellNode, cell)
+  })
+}
 
 cells.forEach((cellNode) => {
   cellNode.addEventListener("mouseover", (e) => {
@@ -196,5 +226,29 @@ cells.forEach((cellNode) => {
     if (isEActive) {
       draw(e.target, cell)
     }
+    if(hodingClick){
+      tempNode = e.target.className
+      if (hodledElement == 'entry' && e.target.className !== 'target' || hodledElement == 'target' && e.target.className !== 'entry'){
+        forceDraw(e.target , hodledElement)
+        if (hodledElement == 'entry') {
+          entryNode = e.target
+        } else if (hodledElement == 'target') {
+          targetNode = e.target
+        }
+        console.log(step);
+        if(step > 1){
+         startVis(true) 
+        }
+      }
+    }
   });
 });
+
+cells.forEach((cellNode) => {
+  cellNode.addEventListener("mouseout", (e) => {
+      if (hodingClick) {
+        forceDraw(e.target, tempNode ? tempNode : cell)
+      } 
+    })
+
+})

@@ -16,7 +16,7 @@ export const visPath = async (finalNode) => {
   }
   for (let i = revPath.length - 1; i >= 0; i--) {
     const waitingResult = await onWaiting(10);
-    draw(revPath[i], path);
+    draw(revPath[i], path , {animationDuration:1000});
   }
 };
 

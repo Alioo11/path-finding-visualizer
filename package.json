@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server index.html"
+    "start": " live-server index.html",
+    "minify":"git branch"
   },
   "repository": {
     "type": "git",
