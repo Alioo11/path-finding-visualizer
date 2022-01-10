@@ -121,12 +121,18 @@ createBoard(WIDTH, HEIGHT);
 
 export const cells = document.querySelectorAll(".cell");
 
+function getRandomArbitrary(min, max) {
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
 const cleanBoard = async () => {
   step = 1
   for(let i =0 ; i<cells.length ; i++){
-    i % WIDTH == 0 &&  await onWaiting(1)
-    forceDraw(cells[i] , cell , {animationDuration:100})
+    i % WIDTH == 0 &&  await onWaiting(200)
+    forceDraw(cells[i] , cell , {animationDuration:800})
+    forceDraw(cells[cells.length - i -1], cell, { animationDuration: 800 })
     writeIn(cells[i],'')
+    writeIn(cells[cells.length - i - 1], '')
   }
 }
 

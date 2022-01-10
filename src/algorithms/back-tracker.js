@@ -45,7 +45,7 @@ const findInBetween = (Node1, Node2) => {
         //console.log('its down')
         return cells[nodeIndex - WIDTH]
     }
-    else if (diffrence === -2) {
+    else if (diffrence === -2) {    
         //console.log('its back')
         return cells[nodeIndex - 1]
     }

@@ -18,6 +18,7 @@ export const writeIn = (NodeCell, content) => {
     const width = localStorage.getItem('WIDTH')
     width < 40 && (NodeCell.innerHTML = content)
 }
-export const forceDraw = (NodeCell, type) => {
+export const forceDraw = (NodeCell, type, anime = animeConfig) => {
+    NodeCell.style.animationDuration = anime.default ? "" : `${anime.animationDuration}ms`
     NodeCell.className = type
 }
