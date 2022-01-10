@@ -7,6 +7,7 @@ import { dimentions as DM } from './utils/config.js'
 import { a_start, a_start2, a_start_realTime} from './algorithms/a_start.js'
 import { greedy, greedy_realTime} from './algorithms/greedy.js'
 import { visPath } from './helpers/visPath.js'
+import { onWaiting } from './helpers/wait.js'
 
 document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra")
@@ -21,6 +22,7 @@ document.getElementById("algo_dijkestra_heap_based").addEventListener('click', (
 document.getElementById("algo_greedy").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "greedy")
 })
+document.querySelector("#clear_maze").addEventListener('click', () => cleanBoard())
 const detailMood = document.getElementById("detail-mode")
 document.getElementById("detail-mode").addEventListener('click' ,()=>{
   handleCheckbox()
@@ -118,6 +120,15 @@ board[0].style.gridTemplateColumns = `repeat( ${WIDTH} , 30px)`
 createBoard(WIDTH, HEIGHT);
 
 export const cells = document.querySelectorAll(".cell");
+
+const cleanBoard = async () => {
+  step = 1
+  for(let i =0 ; i<cells.length ; i++){
+    i % WIDTH == 0 &&  await onWaiting(1)
+    forceDraw(cells[i] , cell , {animationDuration:100})
+    writeIn(cells[i],'')
+  }
+}
 
 
 const handleSenario = (NodeCell) => {

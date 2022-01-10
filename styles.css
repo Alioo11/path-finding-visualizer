@@ -93,6 +93,7 @@ body {
   /* height: 600px; */
   margin-top: 1rem;
   cursor: pointer;
+  margin-bottom: 5rem;
 }
 
 .switch {
@@ -316,7 +317,7 @@ input:checked + .slider:before {
   min-width: 11rem;
   justify-content: center;
   align-items: center;
-  margin: 0rem 2rem;
+  /* margin: 0rem 2rem; */
   color: rgba(0,0,0,.5);
 }
 

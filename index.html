@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="logo" href="./media/logo.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>path finding visualizer</title>
   <link rel="stylesheet" href="./styles.css">
+  <link rel="shortcut icon" href="./pathFinding vis logo.png" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -67,6 +67,12 @@
           <label class="btn btn-secondary active" id="create_maze">
             <input type="radio" name="options" id="option1" autocomplete="off" checked> create Maze
           </label>
+          <label class="btn btn-secondary active" id="clear_maze">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> clear board
+          </label>
+          <label class="btn btn-secondary active" id="create_maze">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> clear path
+          </label>
         </li>
         <li class="nav-item dropdown">
     <div class="nav-item">
@@ -80,7 +86,7 @@
       </ul>
     </div>
   </nav>
-  <h2>here is where we put legends</h2>
+  <!-- <h2>here is where we put legends</h2> -->
 
   <div class="board"></div>
 </body>

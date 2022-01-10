@@ -65,21 +65,21 @@ export const backTracker = async (NodeCell, firstTime) => {
         visitedNodes.push(NodeCell)
         await FillBoard()
     }
-
-
     if (visitedNodes.length === 0) return
-    draw(NodeCell, path)
-    await onWaiting(1)
-
+  
+    
     const possibleRouts = findNeighbours2(visitedNodes[visitedNodes.length - 1], 2).filter((routItem) => routItem.className !== 'cell')
     if (possibleRouts.length === 0) {
+
         visitedNodes.pop()
     } else {
+        draw(NodeCell, path)
+        await onWaiting(delayTime)
         const randomNode = possibleRouts[getRandomArbitrary(0, possibleRouts.length)]
         visitedNodes.push(randomNode)
         const betWeenCell = findInBetween(NodeCell, visitedNodes[visitedNodes.length - 1])
         draw(betWeenCell, cell , {animationDuration:1000})
-        draw(visitedNodes[visitedNodes.length - 1], cell, { animationDuration: 500 })
+        //draw(visitedNodes[visitedNodes.length - 1], cell, { animationDuration: 1000 })
     }
     draw(NodeCell, cell)
     backTracker(visitedNodes[visitedNodes.length - 1])
