@@ -8,6 +8,8 @@ import { a_start, a_start2, a_start_realTime} from './algorithms/a_start.js'
 import { greedy, greedy_realTime} from './algorithms/greedy.js'
 import { visPath } from './helpers/visPath.js'
 import { onWaiting } from './helpers/wait.js'
+import { basicRandom} from './algorithms/basic_randomized.js'
+import { kruskal} from './algorithms/randomized_kruskal.js'
 
 document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra")
@@ -219,7 +221,9 @@ const selectAndCreateMaze = () => {
   entryNode && draw(entryNode, cell)
   targetNode && forceDraw(targetNode, cell)
   const mazeAlgo = localStorage.getItem("maze_algo")
-  backTracker(cells[WIDTH + 1], true)
+  //backTracker(cells[WIDTH + 1], true)
+  //basicRandom()
+  kruskal()
 }
 
 cells.forEach((cellItem) => {
@@ -241,11 +245,6 @@ window.addEventListener("keyup", () => {
   isEActive = false;
 });
 
-const clearBoard = ()=>{
-  cells.forEach((cellNode) => {
-    !(cellNode.className == wall || cellNode.className == weight) && draw(cellNode, cell)
-  })
-}
 
 cells.forEach((cellNode) => {
   cellNode.addEventListener("mouseover", (e) => {

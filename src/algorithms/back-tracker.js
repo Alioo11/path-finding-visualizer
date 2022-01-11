@@ -8,7 +8,6 @@ const dimentions = new DM()
 
 const getRandomArbitrary = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
-
 }
 
 let delayTime = 0
@@ -79,7 +78,6 @@ export const backTracker = async (NodeCell, firstTime) => {
         visitedNodes.push(randomNode)
         const betWeenCell = findInBetween(NodeCell, visitedNodes[visitedNodes.length - 1])
         draw(betWeenCell, cell , {animationDuration:1000})
-        //draw(visitedNodes[visitedNodes.length - 1], cell, { animationDuration: 1000 })
     }
     draw(NodeCell, cell)
     backTracker(visitedNodes[visitedNodes.length - 1])
