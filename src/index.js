@@ -9,7 +9,9 @@ import { greedy, greedy_realTime} from './algorithms/greedy.js'
 import { visPath } from './helpers/visPath.js'
 import { onWaiting } from './helpers/wait.js'
 import { basicRandom} from './algorithms/basic_randomized.js'
-import { kruskal} from './algorithms/randomized_kruskal.js'
+import { basic_random } from './algorithms/basic-random.js'
+import { randomized_kruskal2} from './algorithms/randomized_kruskal.js'
+
 
 document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra")
@@ -130,9 +132,9 @@ function getRandomArbitrary(min, max) {
 const cleanBoard = async () => {
   step = 1
   for(let i =0 ; i<cells.length ; i++){
-    i % WIDTH == 0 &&  await onWaiting(200)
-    forceDraw(cells[i] , cell , {animationDuration:800})
-    forceDraw(cells[cells.length - i -1], cell, { animationDuration: 800 })
+    i % WIDTH == 0 &&  await onWaiting(40)
+    forceDraw(cells[i] , cell)
+    forceDraw(cells[cells.length - i -1], cell)
     writeIn(cells[i],'')
     writeIn(cells[cells.length - i - 1], '')
   }
@@ -223,7 +225,8 @@ const selectAndCreateMaze = () => {
   const mazeAlgo = localStorage.getItem("maze_algo")
   //backTracker(cells[WIDTH + 1], true)
   //basicRandom()
-  kruskal()
+  //basic_random()
+  randomized_kruskal2()
 }
 
 cells.forEach((cellItem) => {
