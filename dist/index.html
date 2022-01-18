@@ -21,6 +21,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light nav-custom">
+    <img src="./media/color logo .png" alt="logo" style="width:100px ; padding: 0 1rem;">
     <h3 class="navbar-brand text-secondary" href=#>Pathfinding Visualizer</h3>
     <button class="btn btn-primary" style=margin-left:1rem;width:5rem type=button id=start_btn>
       start
@@ -52,8 +53,9 @@
             Maze algorithm
           </a>
           <div class=dropdown-menu aria-labelledby=navbarDropdown>
-            <button class=dropdown-item href=#>recursive back-tracking</button>
-            <button class=dropdown-item href=#>basic random</button>
+            <button class="dropdown-item btn btn-warning" id="maze_recursive_backtracking">recursive back-tracking</button>
+            <button class="dropdown-item btn btn-warning" id="maze_basic_random">basic random</button>
+            <button class="dropdown-item btn btn-warning" id="maze_randomized_kruskal">randomized kruskal</button>
             <div class=dropdown-divider></div>
             <div style="padding:0 1.4rem">speed</div>
             <input type=range class="form-range dropdown-item" min=0 max=15 id=maze_algorithm_speed>
@@ -65,9 +67,6 @@
           </label>
           <label class="btn btn-secondary active" id=clear_maze>
             <input type=radio name=options id=option1 autocomplete=off checked> clear board
-          </label>
-          <label class="btn btn-secondary active" id=create_maze>
-            <input type=radio name=options id=option1 autocomplete=off checked> clear path
           </label>
         </li>
         <li class="nav-item dropdown">

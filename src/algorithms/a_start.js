@@ -3,7 +3,6 @@ import { onWaiting } from './../helpers/wait.js'
 import { findNeighbours } from "../helpers/neighbours.js";
 import { visPath } from './../helpers/visPath.js'
 import { distance } from "../helpers/distance.js";
-import { dimentions } from "../utils/config.js";
 import { waitTillUserClick} from '../index.js'
 
 
