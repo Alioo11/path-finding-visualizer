@@ -59,12 +59,9 @@
 
 @keyframes cellAnime {
   0% {
-    background-color: rgb(48, 48, 48);
-    transform: scale(0.1);
-  }
-  50% {
-    transform: scale(1);
-    background-color: rgb(48, 48, 48);
+    background-color: rgb(53, 59, 67); 
+    border-radius: 10px;
+    transform: scale(0.5);
   }
   100% {
     transform: scale(1);
@@ -223,7 +220,6 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
   font-size: 14px;
-  
   transition: background-color 1000;
   animation-name: cellAnime; 
   border : solid 1px rgb(213, 213, 213);
@@ -250,18 +246,14 @@ input:checked + .slider:before {
 
 .weight {
   background-color: rgb(255, 0, 111);
-  border: solid 2px black;
+  /* border: solid 2px black; */
   color: white !important;
   font-size: 1rem !important;
   font-weight: 800;
 }
 
 .wall {
-  background-color: rgb(48, 48, 48);
-  /* border: 1px solid rgb(94, 94, 94);
-  border-bottom: none;
-  border-right: none; */
-  /* box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8) inset; */
+  background-color: rgb(53, 59, 67); 
   display: flex;
   justify-content: center;
   align-items: center;

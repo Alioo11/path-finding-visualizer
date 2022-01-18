@@ -22,6 +22,15 @@ document.getElementById("algo_A_start").addEventListener('click', (e) => {
 document.getElementById("algo_dijkestra_heap_based").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra_heap_based")
 })
+document.getElementById('maze_recursive_backtracking').addEventListener('click',()=>{
+  localStorage.setItem('maze',"recursive_backtracking" )
+})
+document.getElementById('maze_basic_random').addEventListener('click',()=>{
+  localStorage.setItem('maze',"basic_random")
+})
+document.getElementById("maze_randomized_kruskal").addEventListener('click',()=>{
+  localStorage.setItem('maze',"randomized_kruskal")
+})
 
 document.getElementById("algo_greedy").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "greedy")
@@ -98,6 +107,7 @@ function init() {
   localStorage.removeItem("maze_speed")
   localStorage.removeItem("algorithm_speed")
   localStorage.removeItem("algorithm")
+  localStorage.removeItem("maze")
   localStorage.removeItem("detail-mode")
 }
 init()
@@ -124,10 +134,6 @@ board[0].style.gridTemplateColumns = `repeat( ${WIDTH} , 30px)`
 createBoard(WIDTH, HEIGHT);
 
 export const cells = document.querySelectorAll(".cell");
-
-function getRandomArbitrary(min, max) {
-  return Math.floor(Math.random() * (max - min) + min)
-}
 
 const cleanBoard = async () => {
   step = 1
@@ -222,11 +228,31 @@ const selectAndCreateMaze = () => {
   step = 1;
   entryNode && draw(entryNode, cell)
   targetNode && forceDraw(targetNode, cell)
-  const mazeAlgo = localStorage.getItem("maze_algo")
-  //backTracker(cells[WIDTH + 1], true)
+  const mazeAlgo = localStorage.getItem("maze")
+  switch (mazeAlgo){
+    case "recursive_backtracking" :{
+      backTracker(cells[WIDTH + 1], true)
+      break;
+    }
+    case "recursive_backtracking": {
+      backTracker(cells[WIDTH + 1], true)
+      break;
+    }
+    case "basic_random" : {
+      basicRandom()
+      break
+    }
+    case "randomized_kruskal":{
+      randomized_kruskal2()
+      break
+    }
+    default :{
+      randomized_kruskal2()
+      break
+    }
+  }
+  //
   //basicRandom()
-  //basic_random()
-  randomized_kruskal2()
 }
 
 cells.forEach((cellItem) => {
