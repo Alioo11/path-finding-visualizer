@@ -1,3 +1,4 @@
+"strict mode"
 import { draw, writeIn } from "../helpers/draw.js";
 import { onWaiting } from './../helpers/wait.js'
 import { findNeighbours } from "../helpers/neighbours.js";
@@ -72,6 +73,9 @@ function Myset() {
   this.col = () => {
     return this.collection;
   };
+  this.clear = ()=>{
+    this.collection = []
+  }
 }
 const set = Myset
 
@@ -134,10 +138,10 @@ export const a_start2 = (startingNode, endNode) => {
     possibleRouts.delete(nodeLoop);
     findNeighbours(nodeLoop.node).forEach((item) => {
       const cost = nodeLoop.cost + (item.className === weight ? 10 : 1);
-      const heuristic = distance(item, endNode);
+      const heuristic = distance(item, endNode)*1;
       const newNode = new Node(item, nodeLoop, scaning, cost, heuristic);
       isDetailMood && draw(item, candidate)
-     // isDetailMood && writeIn(item, `c:${newNode.cost}`)
+     // isDetailMood && writeIn
       isDetailMood && writeIn(item , `C:${newNode.cost} <br/> H:${newNode.cost == 0 ? 0 : newNode.heuristic}`)
       possibleRouts.add(newNode);
     });
@@ -145,9 +149,8 @@ export const a_start2 = (startingNode, endNode) => {
   };
   return iteration(startingNode, true);
 };
-
+const possibleRouts = new set();
 export const a_start_realTime = (startingNode, endNode) => {
-  const possibleRouts = new set();
   const iteration = (nodeLoop, firstTime) => {
     NodeList.push(nodeLoop);
     if(firstTime){
@@ -163,6 +166,7 @@ export const a_start_realTime = (startingNode, endNode) => {
       for (let i = revPath.length - 1; i >= 0; i--) {
         draw(revPath[i], path);
       }
+      possibleRouts.clear()
       return 
     }
     possibleRouts.delete(nodeLoop);

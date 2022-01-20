@@ -175,10 +175,10 @@ export const randomized_kruskal2 = async () => {
             return
         }
         await onWaiting(delayTime)
-        draw(cells[randomItem], cell)
+        draw(cells[randomItem], cell , {animationDuration:500})
         await onWaiting(delayTime/2)
-        draw(inBetWeen, cell)
-        await onWaiting(delayTime/2)
+        draw(inBetWeen, cell, { animationDuration: 500 })
+        await onWaiting(delayTime / 2, { animationDuration: 500 })
         draw(randomNeighbour, cell)
         grid.pushTo( firstSequence , secondSequence )
         grid.remove(secondSequence)

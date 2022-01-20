@@ -209,7 +209,9 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
   font-size: 10px;
-  transition: background-color 1000;
+    border : solid 1px rgba(213, 213, 213,0.5);
+  border-top:none;
+  border-left: none;
 
 }
 .cell {
@@ -222,9 +224,7 @@ input:checked + .slider:before {
   font-size: 14px;
   transition: background-color 1000;
   animation-name: cellAnime; 
-  border : solid 1px rgb(213, 213, 213);
-  border-top:none;
-  border-left: none;
+
 }
 .scaning {
   background-color: rgb(34, 148, 255);
@@ -260,6 +260,7 @@ input:checked + .slider:before {
   font-size: 14px;
   color: gray;
   animation-name: wallAnime;
+  border: none;
 }
 .target {
   background-image: url("./media/destination.png");
