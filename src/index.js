@@ -11,7 +11,7 @@ import { onWaiting } from './helpers/wait.js'
 import { basicRandom} from './algorithms/basic_randomized.js'
 import { basic_random } from './algorithms/basic-random.js'
 import { randomized_kruskal2} from './algorithms/randomized_kruskal.js'
-
+import {first_depth} from './algorithms/firstDepth.js'
 
 document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra")
@@ -211,13 +211,7 @@ const startVis = async (fast_forward) => {
         }
       }
       default: {
-        if (fast_forward) {
-          normalDijkestras_realTime(new Node(entryNode, null, entry, 0))
-          break;
-        } else {
-          await normalDijkestras(new Node(entryNode, null, entry, 0))
-          break;
-        }
+        first_depth(new Node(entryNode, null, entry, 0)) 
       }
     }
     console.timeEnd()
