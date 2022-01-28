@@ -57,16 +57,21 @@ const findInBetween = (Node1, Node2) => {
 
 const visitedNodes = []
 let i = 0
-export const backTracker = async (NodeCell, firstTime) => {
+export const backTracker = (NodeCell) => {
+    return new Promise ((resolve , reject)=>{
+
+    
+    const iteration = async (NodeCell, firstTime)=>{
     i++;
     if (firstTime) {
         delayTime = localStorage.getItem("maze_speed") ? (5 - localStorage.getItem("maze_speed")) * 80 + 20 : 30
         visitedNodes.push(NodeCell)
         await FillBoard()
     }
-    if (visitedNodes.length === 0) return
+    if (visitedNodes.length === 0) {
+        return resolve()
+    }
   
-    
     const possibleRouts = findNeighbours2(visitedNodes[visitedNodes.length - 1], 2).filter((routItem) => routItem.className !== 'cell')
     if (possibleRouts.length === 0) {
 
@@ -80,5 +85,7 @@ export const backTracker = async (NodeCell, firstTime) => {
         draw(betWeenCell, cell , {animationDuration:1000})
     }
     draw(NodeCell, cell)
-    backTracker(visitedNodes[visitedNodes.length - 1])
+    iteration(visitedNodes[visitedNodes.length - 1])
+}
+return iteration (NodeCell , true)})
 }

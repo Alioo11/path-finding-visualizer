@@ -1,87 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+    <title>Document</title>
 </head>
+<style>
+    body{
+        background-color: black;
+    }
+    .bar-container{
+        background-color: rgb(92, 92, 92);
+        box-shadow: 0px 0px 15px rgb(92, 92, 92);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 10rem;
+        display: flex;
+        justify-content: center;
+        transform: scaleY(-1);
+        align-items: center;
+       
+    }
+    .bar{
+        height: 40px;
+        width: 5px;
+        background-color: white;
+        margin: 15px 1px;
+        border-radius: 5px;
+        animation: 500ms barAnimation infinite ease-in ;
+    }
+    @keyframes barAnimation {
+        0%{
+            height: 5px;
+            
+        }
+        50%{
+             height: 30px;
+            
+        }
+        100%{
+            height: 5px;
+        }
 
-
+    }
+    .bar:nth-child(2n){
+        animation-delay: 200ms ;
+    }
+</style>
 <body>
-    this is a MatSet are you still there ?? 
-    <script>
-      function MatSet (){
-          let collection = []
-          let length = 0
-
-          this.init = (initialValue)=>{
-              collection = initialValue
-              length = initialValue.length
-          }
-          this.items = ()=>{
-              console.log(collection)
-          }
-          this.size = ()=>{
-              return length
-          }
-          this.findSequence = (arr)=>{
-            let found 
-            for(let i=0 ; i<collection.length ; i++){
-                found = collection[i].every((colItemItem, index) => {
-                    return colItemItem == arr[index]
-                })
-                if(found) return collection[i]
-            }
-            return null
-          }
-            this.findSequenceIndex = (arr) => {
-              let found
-              for (let i = 0; i < collection.length; i++) {
-                  found = collection[i].every((colItemItem, index) => {
-                      return colItemItem == arr[index]
-                  })
-                  if (found) return i
-              }
-              return null
-          }
-          this.findOne = (num)=>{
-              let found
-              for (let i = 0; i < collection.length; i++) {
-                  found = collection[i].includes(num)
-                  if (found) return collection[i]
-              }
-              return null
-          }
-          this.remove = (arr)=>{
-            //? find the array 
-            const index = this.findSequenceIndex(arr)
-            if (index === null) return false
-            collection = collection.slice(0 , index).concat(collection.slice(index +1 , collection.length))
-          }
-          this.pushTo = (arr , content) =>{
-            const index = this.findSequenceIndex(arr)
-            console.log(index)
-            if (index == null) return false
-            collection = collection.map((item , idx)=>{
-                if(idx == index) {
-                    return item.concat(content)
-                }
-                else{
-                 return item   
-                }  
-            })
-          }
-      }
-
-    const test = new MatSet()
-    test.init([[5, 6, 7] , [8,9,10] , [1] , [2] ,[66]])
-    test.pushTo([5,6,7] , [99,99,99 , 45])
-    test.items()
-
-
-    </script>
+        <div class="bar-container">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
 </body>
-
 </html>

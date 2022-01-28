@@ -53,6 +53,8 @@ let entryNode = null;
 let targetNode = null;
 let running = false;
 
+let progressing = false;
+
 const WIDTH = dimentions.getWidth();
 const HEIGHT = dimentions.getHeight()
 
@@ -64,6 +66,7 @@ let hodledElement = null;
 let tempNode = null
 
 document.addEventListener('mousedown', (e) => {
+  if(progressing) return
   if (e.target.className == "entry" || e.target.className == "target"){
     hodledElement = e.target.className
     hodingClick = true;
@@ -73,6 +76,7 @@ document.addEventListener('mousedown', (e) => {
 
 
 document.addEventListener('mouseup', (e) =>{ 
+  if (progressing) return
   hodingClick = false
   hodledElement = null
 })
@@ -136,6 +140,7 @@ createBoard(WIDTH, HEIGHT);
 export const cells = document.querySelectorAll(".cell");
 
 const cleanBoard = async () => {
+  if(progressing) return
   step = 1
   for(let i =0 ; i<cells.length ; i++){
     i % WIDTH == 0 &&  await onWaiting(40)
@@ -170,9 +175,11 @@ const handleSenario = (NodeCell) => {
 }
 
 const startVis = async (fast_forward) => {
+  if(progressing) return
   if (step === 3 && entryNode) {
     const algorithm = localStorage.getItem("algorithm") ? localStorage.getItem("algorithm") : null
     console.time()
+    progressing = true
     switch (algorithm) {
       case "dijkestra_heap_based": {
         if(fast_forward){
@@ -214,37 +221,40 @@ const startVis = async (fast_forward) => {
         first_depth(new Node(entryNode, null, entry, 0)) 
       }
     }
+    progressing = false;
     console.timeEnd()
   }
 }
 
-const selectAndCreateMaze = () => {
+const selectAndCreateMaze = async () => {
+  if(progressing) return
   step = 1;
   entryNode && draw(entryNode, cell)
   targetNode && forceDraw(targetNode, cell)
   const mazeAlgo = localStorage.getItem("maze")
   switch (mazeAlgo){
     case "recursive_backtracking" :{
-      backTracker(cells[WIDTH + 1], true)
+      await backTracker(cells[WIDTH + 1], true)
       break;
     }
     case "recursive_backtracking": {
-      backTracker(cells[WIDTH + 1], true)
+      await backTracker(cells[WIDTH + 1], true)
       break;
     }
     case "basic_random" : {
-      basicRandom()
+      await basicRandom()
       break
     }
     case "randomized_kruskal":{
-      randomized_kruskal2()
+      await randomized_kruskal2()
       break
     }
     default :{
-      randomized_kruskal2()
+      await randomized_kruskal2()
       break
     }
   }
+  
   //
   //basicRandom()
 }
@@ -291,7 +301,7 @@ cells.forEach((cellNode) => {
         } else if (hodledElement == 'target') {
           targetNode = e.target
         }
-        console.log(step);
+        // console.log(step);
         if(step > 1){
          startVis(true) 
         }

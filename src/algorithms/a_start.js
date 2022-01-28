@@ -37,27 +37,27 @@ function Node(node, orgin, type, cost, heuristic) {
 }
 
 function Myset() {
-  this.collection = [];
-  this.bestNode = null;
+  let collection = [];
+  let bestNode = null;
   this.add = (Node) => {
     const haveItem =
-      this.collection.filter((item) => item.node?.id == Node.id).length > 0;
+      collection.filter((item) => item.node?.id == Node.id).length > 0;
     if (!haveItem) {
-      this.collection.push(Node);
+      collection.push(Node);
     } else {
-      this.collection = this.collection.filter(
+      collection = collection.filter(
         (item) => item.node?.id !== Node.id
       );
     }
   };
   this.delete = (Node) => {
-    this.collection = this.collection.filter(
+    collection = collection.filter(
       (collectionItem) => collectionItem?.node?.id !== Node.node.id
     );
-    return this.collection;
+    return collection;
   };
   this.findBestNode = () => {
-    this.bestNode = this.collection.reduce((all, current) => {
+    this.bestNode = collection.reduce((all, current) => {
       return all.cost + all.heuristic  > current.cost + current.heuristic ? current : all;
 
     });
@@ -65,16 +65,16 @@ function Myset() {
     return this.bestNode;
   };
   this.reSort = () => {
-    return this.collection.sort((a, b) => a.cost - b.cost);
+    return collection.sort((a, b) => a.cost - b.cost);
   };
   this.show = () => {
-    console.log(this.collection);
+    console.log(collection);
   };
   this.col = () => {
-    return this.collection;
+    return collection;
   };
   this.clear = ()=>{
-    this.collection = []
+    collection = []
   }
 }
 const set = Myset

@@ -212,7 +212,6 @@ input:checked + .slider:before {
     border : solid 1px rgba(213, 213, 213,0.5);
   border-top:none;
   border-left: none;
-
 }
 .cell {
   width: 30px;
