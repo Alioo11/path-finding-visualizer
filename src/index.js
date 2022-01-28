@@ -153,6 +153,7 @@ const cleanBoard = async () => {
 
 
 const handleSenario = (NodeCell) => {
+  if(progressing) return
   switch (step) {
     case 0: {
       backTracker(cells[WIDTH + 1], true)
@@ -228,6 +229,7 @@ const startVis = async (fast_forward) => {
 
 const selectAndCreateMaze = async () => {
   if(progressing) return
+  progressing = true
   step = 1;
   entryNode && draw(entryNode, cell)
   targetNode && forceDraw(targetNode, cell)
@@ -254,7 +256,8 @@ const selectAndCreateMaze = async () => {
       break
     }
   }
-  
+    console.log('here we finished the algorithms')
+  progressing = false
   //
   //basicRandom()
 }

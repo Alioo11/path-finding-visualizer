@@ -149,12 +149,15 @@ const InitiGrid2 = () => {
 }
 let delayTime
 
-export const randomized_kruskal2 = async () => {
+export const randomized_kruskal2 =() => {
+    return new Promise((resolve , reject)=>{
     const  grid = initGrid3()
     const iteration = async (firstTime)=>{
         firstTime && await FillBoard()
         firstTime && (delayTime = localStorage.getItem("maze_speed") ? (5 - localStorage.getItem("maze_speed")) * 80 + 20 : 30)
-        if(grid.items().length === 1) return 
+        if(grid.items().length === 1) {
+            return resolve()
+        }
         const randomArray = grid.items()[getRandomArbitrary(0 , grid.items().length)]
         const randomItem = randomArray.length >1 ? randomArray[getRandomArbitrary(0 , randomArray.length)] : randomArray[0]
         const  neighbours = findNeighbours2(cells[randomItem],2)
@@ -184,5 +187,6 @@ export const randomized_kruskal2 = async () => {
         grid.remove(secondSequence)
         iteration() 
     }
-    iteration(true)
+    iteration(true) 
+    })
 }
