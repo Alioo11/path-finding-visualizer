@@ -12,6 +12,7 @@ import { basicRandom} from './algorithms/basic_randomized.js'
 import { basic_random } from './algorithms/basic-random.js'
 import { randomized_kruskal2} from './algorithms/randomized_kruskal.js'
 import {first_depth} from './algorithms/firstDepth.js'
+import "./../styles.css"
 
 document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra")
@@ -257,6 +258,7 @@ const selectAndCreateMaze = async () => {
     }
   }
     console.log('here we finished the algorithms')
+    console.log('hahaha')
   progressing = false
   //
   //basicRandom()

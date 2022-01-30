@@ -1,3 +1,0 @@
-//! here we init where the start point is and wher ethe end point is Ha Ha h
-
-//! this is a test case 
