@@ -4,7 +4,7 @@ module.exports = {
     entry : "./src/index.js",
     mode :"development",
     output:{
-        filename: "main-[contenthash].js",
+        filename: "js/main-[contenthash].js",
         path : path.resolve(__dirname , "dist"),
         clean : true
     },
@@ -19,13 +19,10 @@ module.exports = {
                 use :['html-loader']
             },
             {
-                test : /\.(png | jpg | gif | svg)$/,
-                use : {
-                    loader : "file-loader",
-                    options : {
-                        name : "[name].[hash].[ext]",
-                        outputPath : "assets"
-                    }
+                test: /\.(jpe?g|png|gif)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: `img/[ext]/[name]_[hash][ext]`
                 }
             }
         ]
