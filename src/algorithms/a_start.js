@@ -176,6 +176,9 @@ export const a_start_realTime = (startingNode, endNode) => {
       const newNode = new Node(item, nodeLoop, scaning, cost, heuristic);
       possibleRouts.add(newNode);
     });
+    if(possibleRouts.col().length === 0){
+      return
+    }
     iteration(possibleRouts.findBestNode());
   };
   return iteration(startingNode, true);

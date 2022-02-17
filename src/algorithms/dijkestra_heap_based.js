@@ -174,6 +174,7 @@ export const dijkestra_realTime =  (startingNode) => {
         possibleRouts.insert(newNode);
       });
       possibleRouts.remove();
+      
       iteration(possibleRouts.best());
       
     };
