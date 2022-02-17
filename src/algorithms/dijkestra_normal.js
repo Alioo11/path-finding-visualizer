@@ -44,6 +44,10 @@ export const normalDijkestras = (startingNode) => {
                 isDetailMood && writeIn(item , `c:${newNode.cost}`)
                 possibleRouts.add(newNode);
             });
+            if(possibleRouts.col().length === 0){
+                console.error("failed to find the target")
+                resolve()
+            }
             iteration(possibleRouts.findBestNode());
         };
         return iteration(startingNode, true);
@@ -86,6 +90,9 @@ export const normalDijkestras_realTime = (startingNode) => {
                 const newNode = new Node(item, nodeLoop, scaning, nodeLoop.cost + (item.className === weight ? 30 : 1));
                 possibleRouts.add(newNode);
             });
+            if(possibleRouts.col().length === 0){
+                return
+            }
             iteration(possibleRouts.findBestNode());
         };
         return iteration(startingNode, true);
