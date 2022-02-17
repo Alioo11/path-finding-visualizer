@@ -103,6 +103,17 @@ export const waitTillUserClick = ()=>{
     })
   })
 }
+const board = document.getElementsByClassName("board");
+const createBoard = (width, height) => {
+  board[0].innerHTML = Array.from(Array.from(Array(width * height).keys()), (item) => `<div id='${item}' class='cell'></div>`).join().replace(/,/g, "")
+};
+
+
+board[0].style.gridTemplateColumns = `repeat( ${WIDTH} , 30px)`
+
+createBoard(WIDTH, HEIGHT);
+
+export const cells = document.querySelectorAll(".cell");
 
 function init() {
 
@@ -114,10 +125,25 @@ function init() {
   localStorage.removeItem("algorithm")
   localStorage.removeItem("maze")
   localStorage.removeItem("detail-mode")
+
+  step = 3
+
+  const midBoard = Math.floor(HEIGHT/2 ) -1
+
+  const targetIndex = WIDTH * midBoard + Math.floor(0.8*WIDTH)
+  const endtryIndex = WIDTH * midBoard + Math.floor(0.2*WIDTH)
+
+  console.log(targetIndex)
+
+  targetNode = cells[targetIndex]
+  draw(targetNode , target)
+
+  entryNode = cells[endtryIndex]
+  draw(entryNode , entry)
+
 }
 init()
 
-const board = document.getElementsByClassName("board");
 const startBtn = document.getElementById('start_btn')
 
 maze_speed.addEventListener("change", (e) => localStorage.setItem("maze_speed", e.target.value))
@@ -129,16 +155,9 @@ startBtn.addEventListener('click', () => {
   startVis()
 })
 
-const createBoard = (width, height) => {
-  board[0].innerHTML = Array.from(Array.from(Array(width * height).keys()), (item) => `<div id='${item}' class='cell'></div>`).join().replace(/,/g, "")
-};
 
 
-board[0].style.gridTemplateColumns = `repeat( ${WIDTH} , 30px)`
 
-createBoard(WIDTH, HEIGHT);
-
-export const cells = document.querySelectorAll(".cell");
 
 const cleanBoard = async () => {
   if(progressing) return
@@ -220,7 +239,7 @@ const startVis = async (fast_forward) => {
         }
       }
       default: {
-        first_depth(new Node(entryNode, null, entry, 0)) 
+        await normalDijkestras(new Node(entryNode, null, entry, 0))
       }
     }
     progressing = false;

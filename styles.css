@@ -34,13 +34,27 @@
     transform: scale(1);
   }
 }
+@keyframes scan {
+  0% {
+    background-color: rgba(67, 255, 195, 0.283);
+    transform: scale(0.1) ;
+  }
+  10% {
+    transform: scale(1.2);
+  }
+  100% {
+    background-color: rgb(34, 148, 255);
+    transform: scale(1) ;
+  }
+}
 
 @keyframes pathAnime {
   0% {
     transform: scale(0.1);
+    background-color: rgb(167, 255, 195);
   }
   50% {
-    transform: scale(1.4);
+    transform: scale(1.6);
   }
   100% {
     background-color: rgb(34, 255, 104);
@@ -229,7 +243,7 @@ input:checked + .slider:before {
   background-color: rgb(34, 148, 255);
   font-size: 14px;
   /* animation-duration: 500ms; */
-  animation-name: spring;
+  animation-name: scan;
   font-weight: 900;
 }
 .path {
@@ -259,7 +273,7 @@ input:checked + .slider:before {
   font-size: 14px;
   color: gray;
   animation-name: wallAnime;
-  border: none;
+  border: none !important;
 }
 .target {
   background-image: url("./media/destination.png");

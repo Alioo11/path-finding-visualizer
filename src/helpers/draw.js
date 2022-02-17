@@ -15,8 +15,8 @@ export const draw = (NodeCell, type , anime = animeConfig) => {
     NodeCell.className = NodeCell.className === target ? target : type
 }
 export const writeIn = (NodeCell, content) => {
-    const width = localStorage.getItem('WIDTH')
-     NodeCell.innerHTML = content
+    //const width = localStorage.getItem('WIDTH')
+    // NodeCell.innerHTML = content
 }
 export const forceDraw = (NodeCell, type, anime = animeConfig) => {
     NodeCell.style.animationDuration = anime.default ? "" : `${anime.animationDuration}ms`
