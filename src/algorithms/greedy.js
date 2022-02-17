@@ -132,6 +132,9 @@ export const greedy_realTime = (startingNode, endNode) => {
 
             possibleRouts.add(newNode);
         });
+        if(possibleRouts.col().length === 0){
+            return
+        }
         iteration(possibleRouts.findBestNode());
     };
     return iteration(startingNode, true);
