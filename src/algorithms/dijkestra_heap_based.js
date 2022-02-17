@@ -138,6 +138,9 @@ export const dijkestra = async (startingNode) => {
         isDetailMood && writeIn(item, `c:${newNode.cost}`)
         possibleRouts.insert(newNode);
       });
+      if(!possibleRouts.best()){
+        return resolve();
+      }
       iteration(possibleRouts.best());
       possibleRouts.remove();
       count++;
@@ -174,7 +177,9 @@ export const dijkestra_realTime =  (startingNode) => {
         possibleRouts.insert(newNode);
       });
       possibleRouts.remove();
-      
+      if(!possibleRouts.best()){
+        return
+      }
       iteration(possibleRouts.best());
       
     };
