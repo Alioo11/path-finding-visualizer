@@ -11,4 +11,8 @@ module.exports = merge.merge(common ,{
         path: path.resolve(__dirname, "dist"),
         clean: true
     },
+    devServer: {
+        compress: true,
+        port: 9000,
+      },
 })

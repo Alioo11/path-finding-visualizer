@@ -1,0 +1,8 @@
+{
+    "name": "Pathfinding Visualizer",
+    "short_name": "Pathfinding Visualizer",
+    "start_url": "/build/index.html",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "find your way !"
+}

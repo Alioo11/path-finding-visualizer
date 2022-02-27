@@ -71,6 +71,18 @@
   }
 }
 
+@keyframes weightAnime {
+  0% {
+    transform: scale(0.1) translateY(30px);
+  }
+  80%{
+    transform: scale(1.1) translateY(0px);
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+  }
+}
+
 @keyframes cellAnime {
   0% {
     background-color: rgb(53, 59, 67); 
@@ -258,11 +270,17 @@ input:checked + .slider:before {
 }
 
 .weight {
-  background-color: rgb(255, 0, 111);
   /* border: solid 2px black; */
+  background-image: url("./media/weight.svg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white !important;
   font-size: 1rem !important;
   font-weight: 800;
+  animation: weightAnime 0.2s ease-out;
 }
 
 .wall {
@@ -321,11 +339,4 @@ input:checked + .slider:before {
   align-items: center;
   /* margin: 0rem 2rem; */
   color: rgba(0,0,0,.5);
-}
-
-
-@media only screen and (max-width: 400px) {
-  .board {
-    width: 100%;
-  }
 }

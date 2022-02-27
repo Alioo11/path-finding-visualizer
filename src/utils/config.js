@@ -1,6 +1,17 @@
+const windowWidth = window.innerWidth
+const windowHeight = window.innerHeight;
+
+const calculateWidth = ()=>{
+    return ((parseInt(windowWidth / 30) - 2) % 2 === 0 ? (parseInt(windowWidth / 30) -  3 ) : (parseInt(windowWidth / 30) - 2))
+}
+
+const calculateHeight = ()=>{
+    return  windowWidth < 400 ? (parseInt(windowHeight / 30) - 1) : (parseInt(windowHeight / 30) - 3) - 2;
+}
+
 export function dimentions() {
-    let WIDTH = (parseInt(window.innerWidth / 30) - 2) % 2 === 0 ? (parseInt(window.innerWidth / 30) - 3) : (parseInt(window.innerWidth / 30) - 2);
-    let HEIGHT = window.innerWidth < 400 ? (parseInt(window.innerHeight / 30) - 1) : (parseInt(window.innerHeight / 30) - 3) - 2;
+    let WIDTH = calculateWidth() + (windowWidth >500 ? 0 : 2)
+    let HEIGHT = calculateHeight()
     let running = false;
     let algorithm = null
     let mazeAlgorithm = null;
