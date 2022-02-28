@@ -29,7 +29,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark nav-custom ">
   <img src="./media/logo-2.svg" alt="logo" style="width:50px ; padding: 0 0.1rem;">
-    <p class="navbar-brand text-light" style="margin: auto 1rem; font-weight: 500;" >Pathfinding Visualizer</p>
+    <p class="navbar-brand text-light custom-title" >Pathfinding Visualizer</p>
     <button class="btn btn-primary" style="margin-left: 1rem; width:5rem ; box-shadow: 0px 0px 10px #007bff;" type="button" id="start_btn">
       start
     </button>
@@ -76,6 +76,12 @@
           <label class="btn btn-secondary active" id="clear_maze">
             <input type="radio" name="options" id="option1" autocomplete="off" checked> clear board
           </label>
+          <label class="btn btn-secondary active" id="clear_path">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> clear path
+          </label>
+          <label class="btn btn-secondary active" id="clear_walls">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> clear walls
+          </label>
           <!-- <label class="btn btn-secondary active" id="create_maze">
             <input type="radio" name="options" id="option1" autocomplete="off" checked> clear path
           </label> -->
@@ -92,9 +98,8 @@
       </ul>
     </div>
   </nav>
-  <!-- <h2>here is where we put legends</h2> -->
-
   <div class="board"></div>
+  
 </body>
 
 </html>
