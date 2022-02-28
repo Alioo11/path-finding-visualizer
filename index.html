@@ -27,11 +27,10 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light  bg-light nav-custom ">
-    <!-- <img src="./media//logo.svg" alt="logo"> -->
-  <img src="./media/logo-2.svg" alt="logo" style="width:80px ; padding: 0 0.5rem;">
-    <h3 class="navbar-brand text-secondary" >Pathfinding Visualizer</h3>
-    <button class="btn btn-primary" style="margin-left: 1rem; width:5rem" type="button" id="start_btn">
+  <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark nav-custom ">
+  <img src="./media/logo-2.svg" alt="logo" style="width:50px ; padding: 0 0.1rem;">
+    <p class="navbar-brand text-light" style="margin: auto 1rem; font-weight: 500;" >Pathfinding Visualizer</p>
+    <button class="btn btn-primary" style="margin-left: 1rem; width:5rem ; box-shadow: 0px 0px 10px #007bff;" type="button" id="start_btn">
       start
     </button>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -46,13 +45,13 @@
             aria-haspopup="true" aria-expanded="false">
             algorithm
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <button class="dropdown-item btn" id="algo_dijkestra">Dijkestra</button>
-            <button class="dropdown-item btn" id="algo_dijkestra_heap_based">Dijkestra_heap_based</button>
-            <button class="dropdown-item btn" id="algo_A_start">A*</button>
-            <button class="dropdown-item btn" id="algo_greedy">Greedy</button>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+            <button class="dropdown-item bg-dark text-light btn" id="algo_dijkestra">Dijkestra</button>
+            <button class="dropdown-item bg-dark text-light btn" id="algo_dijkestra_heap_based">Dijkestra_heap_based</button>
+            <button class="dropdown-item bg-dark text-light btn" id="algo_A_start">A*</button>
+            <button class="dropdown-item bg-dark text-light btn" id="algo_greedy">Greedy</button>
             <div class="dropdown-divider"></div>
-            <div style=" padding: 0 1.4rem ;">speed</div>
+            <div style=" padding: 0 1.4rem ;" class="text-light">speed</div>
             <input type="range" class="form-range dropdown-item" min="0" max="15" value="0" id="algorithm_speed">
           </div>
         </li>
@@ -61,20 +60,20 @@
             aria-haspopup="true" aria-expanded="false">
             Maze algorithm
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <button class="dropdown-item btn btn-warning" id = "maze_recursive_backtracking">recursive back-tracking</button>
-            <button class="dropdown-item btn btn-warning" id = "maze_basic_random">basic random</button>
-            <button class="dropdown-item btn btn-warning" id = "maze_randomized_kruskal">randomized kruskal</button>
+          <div class="dropdown-menu  bg-dark" aria-labelledby="navbarDropdown">
+            <button class="dropdown-item bg-dark text-light btn" id = "maze_recursive_backtracking">recursive back-tracking</button>
+            <button class="dropdown-item bg-dark text-light btn" id = "maze_basic_random">basic random</button>
+            <button class="dropdown-item bg-dark text-light btn" id = "maze_randomized_kruskal">randomized kruskal</button>
             <div class="dropdown-divider"></div>
-            <div style=" padding: 0 1.4rem ;">speed</div>
+            <div style=" padding: 0 1.4rem ;" class="text-light">speed</div>
             <input type="range" class="form-range dropdown-item" min="0" max="15" id="maze_algorithm_speed">
           </div>
         </li>
         <li class="btn-group btn-group-toggle" style="margin: 0rem auto;" data-toggle="buttons">
-          <label class="btn btn-primary active" id="create_maze">
+          <label class="btn  btn-secondary active" id="create_maze">
             <input type="radio" name="options" id="option1" autocomplete="off" checked> create Maze
           </label>
-          <label class="btn btn-danger active" id="clear_maze">
+          <label class="btn btn-secondary active" id="clear_maze">
             <input type="radio" name="options" id="option1" autocomplete="off" checked> clear board
           </label>
           <!-- <label class="btn btn-secondary active" id="create_maze">
@@ -82,9 +81,9 @@
           </label> -->
         </li>
         <li class="nav-item dropdown">
-    <div class="nav-item">
+    <div class="nav-item text-light">
       detail mode
-      <label class="switch">
+      <label class="switch ">
         <input id='detail-mode' type="checkbox" >
         <span class="slider round"></span>
       </label>
