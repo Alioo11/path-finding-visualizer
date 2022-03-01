@@ -19,7 +19,7 @@ module.exports = {
                 use :['html-loader']
             },
             {
-                test: /\.(jpe?g|png|gif)$/,
+                test: /\.(jpe?g|png|gif|svg)$/,
                 type: 'asset/resource',
                 generator: {
                     filename: `img/[ext]/[name]_[hash][ext]`

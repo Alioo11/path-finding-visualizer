@@ -4,5 +4,24 @@
     "start_url": "/build/index.html",
     "display": "standalone",
     "background_color": "#fff",
-    "description": "find your way !"
+    "description": "find your way !",
+    "icons": [
+        {
+          "src": "./media/icon/logo-48.png",
+          "sizes": "48x48",
+          "type": "image/png"
+        },
+        {
+          "src": "./media/icon/logo-48.png",
+          "sizes": "48x48"
+        },
+        {
+          "src": "./media/icon/logo-256.png",
+          "sizes": "72x72 96x96 128x128 256x256"
+        },
+        {
+          "src": "./media/icon/logo-256.png",
+          "sizes": "any"
+        }
+      ]
 }

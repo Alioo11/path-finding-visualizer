@@ -31,7 +31,6 @@ const clearBoard = (nodes) => {
 
 let isDetailMood = localStorage.getItem('detail-mode') ? localStorage.getItem('detail-mode') : false
 
-//! this is a test case 
 let MinHeap = function () {
 
   let heap = [null];
@@ -102,7 +101,6 @@ let MinHeap = function () {
 };
 
 
-//! this is a test case
 
 //const set = Myset
 

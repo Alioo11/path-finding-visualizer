@@ -14,6 +14,8 @@ import { randomized_kruskal2 } from './algorithms/randomized_kruskal.js'
 import { first_depth } from './algorithms/firstDepth.js'
 import "./../styles.css"
 
+navigator.serviceWorker.register("../sw.js")
+
 document.getElementById("algo_dijkestra").addEventListener('click', (e) => {
   localStorage.setItem("algorithm", "dijkestra")
 })
@@ -120,10 +122,6 @@ createBoard(WIDTH, HEIGHT);
 export const cells = document.querySelectorAll(".cell");
 
 function init() {
-
-  //? init the start and end points 
-  //! here we init where the start point is and wher ethe end point is Ha Ha h
-  //? cleaning the local storate 
   localStorage.removeItem("maze_speed")
   localStorage.removeItem("algorithm_speed")
   localStorage.removeItem("algorithm")
