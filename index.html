@@ -87,7 +87,7 @@
           </label> -->
         </li>
         <li class="nav-item dropdown">
-    <div class="nav-item text-light">
+    <div class="nav-item text-light" style="display: none;">
       detail mode
       <label class="switch ">
         <input id='detail-mode' type="checkbox" >
@@ -98,6 +98,33 @@
       </ul>
     </div>
   </nav>
+  <div class="legend">
+    <div class="legend__item">
+      <div class="legend__item__content">start</div>
+      <div class="legend__item__symbol"><img style="transform: rotate(-90deg);" src="./media/arrow .png" alt="arrow"></div>
+    </div>
+    <div class="legend__item">
+      <div class="legend__item__content">target</div>
+      <div class="legend__item__symbol"><img src="./media/destination.png" alt="destination"></div>
+    </div>
+    <div class="legend__item">
+      <div class="legend__item__content">unVisited</div>
+      <div class="legend__item__symbol"><div class="legend__item__symbol__colorItem"></div></div>
+    </div>
+    <div class="legend__item">
+      <div class="legend__item__content">visited</div>
+      <div class="legend__item__symbol"><div class="legend__item__symbol__colorItem visited"></div></div>
+    </div>
+    <div class="legend__item">
+      <div class="legend__item__content">shortest path</div>
+      <div class="legend__item__symbol"><div class="legend__item__symbol__colorItem path"></div></div>
+    </div>
+    <div class="legend__item">
+      <div class="legend__item__content">shortest path</div>
+      <div class="legend__item__symbol"><img style="padding: 0.4rem;" src="./media/weight.svg" alt=""></div>
+    </div>
+
+  </div>
   <div class="board"></div>
   
 </body>
