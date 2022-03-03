@@ -6,7 +6,7 @@ const calculateWidth = ()=>{
 }
 
 const calculateHeight = ()=>{
-    return  windowWidth < 400 ? (parseInt(windowHeight / 30) - 1) : (parseInt(windowHeight / 30) - 3) - 2;
+    return parseInt(windowHeight/30)%2 ==0 ?  (parseInt(windowHeight / 30) - 5)  :  (parseInt(windowHeight / 30) - 4) 
 }
 
 export function dimentions() {
