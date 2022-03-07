@@ -1,11 +1,9 @@
 import { onWaiting } from "./wait.js";
 import { draw } from "./draw.js";
+import { nodeTypes } from "../utils/config.js";
 
-const scaning = "scaning";
-const path = "path";
-const wall = "wall";
-const target = "target";
-const entry = "entry";
+
+const {path} = nodeTypes
 
 export const visPath = async (finalNode) => {
   const revPath = [];

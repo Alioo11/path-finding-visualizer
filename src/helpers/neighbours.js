@@ -1,14 +1,10 @@
 import {dimentions as DM} from '../utils/config.js'
 import {cells} from './../index.js'
+import { nodeTypes } from '../utils/config.js';
 
 const dimentions = new DM
 
-
-const scaning = "scaning";
-const path = "path";
-const wall = "wall";
-const target = "target";
-const entry = "entry";
+const {wall , target} = nodeTypes 
 
 export const findNeighbours = (cellNode , distance = 1 , returnWalls = false) => {
   const WIDTH =  dimentions.getWidth()

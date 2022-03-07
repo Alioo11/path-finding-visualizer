@@ -6,16 +6,18 @@ import { visPath } from './../helpers/visPath.js'
 import { distance } from "../helpers/distance.js";
 import { waitTillUserClick} from '../index.js'
 
+import { nodeTypes } from "../utils/config.js";
 
+const {
+    scaning ,
+    path ,
+    wall ,
+    target ,
+    entry , 
+    weight , 
+    candidate ,
+    cell} = nodeTypes
 
-const scaning = "scaning";
-const path = "path";
-const wall = "wall";
-const target = "target";
-const entry = "entry";
-const weight = 'weight'
-const candidate = 'candidate'
-const cell = 'cell'
 
 const clearBoard = (nodes) => {
   nodes.forEach((cellNode) => {

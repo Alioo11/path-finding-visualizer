@@ -1,9 +1,6 @@
+import { nodeTypes } from "../utils/config";
 
-const scaning = "scaning";
-const path = "path";
-const wall = "wall";
-const target = "target";
-const entry = "entry";
+const {target} = nodeTypes
 
 const animeConfig = {
     animationDuration : 1000,

@@ -6,20 +6,19 @@ import { findNeighbours } from "../helpers/neighbours.js";
 import { visPath } from '../helpers/visPath.js'
 import BST from '../helpers/BST.js'
 import { waitTillUserClick} from '../index.js'
+import { nodeTypes } from "../utils/config.js";
 
-//?this is a BST 
+const {
+    scaning ,
+    path ,
+    wall ,
+    target ,
+    entry , 
+    weight , 
+    candidate ,
+    cell} = nodeTypes
 
-//?this is a BST
 
-
-const scaning = "scaning";
-const path = "path";
-const wall = "wall";
-const target = "target";
-const entry = "entry";
-const weight = 'weight'
-const candidate = 'candidate'
-const cell = 'cell'
 const clearBoard = (nodes) => {
   nodes.forEach((cellNode) => {
     if (!(cellNode.node.className == wall || cellNode.node.className == weight)) {

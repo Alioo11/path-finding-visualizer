@@ -4,8 +4,12 @@ import { dimentions as DM } from '../utils/config.js'
 import { cells } from '../index.js'
 import { onWaiting } from "../helpers/wait.js"
 
-const wall = 'wall'
-const weight = 'weight'
+import { nodeTypes } from "../utils/config.js";
+
+const { wall ,weight } = nodeTypes
+
+
+
 const dimentions = new DM()
 
 const getRandomArbitrary = (min, max) => {

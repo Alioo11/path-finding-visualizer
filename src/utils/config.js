@@ -10,7 +10,7 @@ const calculateHeight = ()=>{
 }
 
 export function dimentions() {
-    let WIDTH = calculateWidth() + (windowWidth >500 ? 0 : 2)
+    let WIDTH = calculateWidth() + (windowWidth >500 ? 0 : 4)
     let HEIGHT = calculateHeight()
     let running = false;
     let algorithm = null
@@ -46,4 +46,14 @@ export function dimentions() {
     this.setHeight = (newHeight) => {
         HEIGHT = newHeight
     }
+}
+export const nodeTypes = {
+    scaning : "scaning",
+    path : "path",
+    wall : "wall",
+    target : "target",
+    entry: "entry",
+    weight : "weight",
+    cell : "cell",
+    candidate : "candidate"
 }

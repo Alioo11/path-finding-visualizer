@@ -3,7 +3,18 @@ import { draw } from "../helpers/draw.js"
 import { dimentions as DM } from '../utils/config.js'
 import { cells } from '../index.js'
 import { onWaiting } from "../helpers/wait.js"
+import { nodeTypes } from "../utils/config.js";
 
+const {
+    scaning ,
+    path ,
+    wall ,
+    target ,
+    entry , 
+    weight , 
+    candidate ,
+    cell} = nodeTypes
+    
 const dimentions = new DM()
 
 const getRandomArbitrary = (min, max) => {
@@ -14,13 +25,6 @@ let delayTime = 0
 
 const WIDTH = dimentions.getWidth()
 const HEIGHT = dimentions.getHeight()
-
-const scaning = "scaning";
-const path = "path";
-const wall = "wall";
-const target = "target";
-const entry = "entry";
-const cell = 'cell'
 
 
 const FillBoard = async () => {

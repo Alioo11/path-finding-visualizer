@@ -1,5 +1,9 @@
 const path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+
+const options ={}
+
 module.exports = {
     entry : "./src/index.js",
     mode :"development",
@@ -23,6 +27,12 @@ module.exports = {
                 type: 'asset/resource',
                 generator: {
                     filename: `img/[ext]/[name]_[hash][ext]`
+                }
+            },
+            {
+                test: /manifest.json$/,
+                generator: {
+                    filename: `manifest.json`
                 }
             }
         ]

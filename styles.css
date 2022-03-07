@@ -12,7 +12,7 @@
     transform: scale(1);
   }
 }
-@keyframes spring {
+/* @keyframes spring {
   0% {
     background-color: rgba(67, 255, 195, 0.283);
     transform: scale(0.5);
@@ -33,7 +33,24 @@
     background-color: rgb(34, 148, 255);
     transform: scale(1);
   }
+} */
+
+@keyframes spring {
+  0% {
+    background-color: rgba(67, 255, 195, 0.283);
+    transform: scale(0.5);
+    border-radius: 10px;
+  }
+  60%{
+    transform: scale(1.1);
+  }
+  100% {
+    background-color: rgb(34, 148, 255);
+    transform: scale(1);
+    border-radius: 0px;
+  }
 }
+
 @keyframes scan {
   0% {
     background-color: rgba(67, 255, 195, 0.283);

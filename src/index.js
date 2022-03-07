@@ -12,6 +12,8 @@ import { basicRandom } from './algorithms/basic_randomized.js'
 import { basic_random } from './algorithms/basic-random.js'
 import { randomized_kruskal2 } from './algorithms/randomized_kruskal.js'
 import { first_depth } from './algorithms/firstDepth.js'
+import { nodeTypes } from './utils/config.js'
+
 import "./../styles.css"
 
 navigator.serviceWorker.register("../sw.js")
@@ -88,13 +90,8 @@ document.addEventListener('mouseup', (e) => {
   hodledElement = null
 })
 
-const scaning = "scaning";
-const path = "path";
-const wall = "wall";
-const target = "target";
-const entry = "entry";
-const weight = 'weight'
-const cell = "cell"
+
+const {wall , target , entry , weight , cell} = nodeTypes
 
 const handleCheckbox = () => {
   localStorage.setItem('detail-mode', detailMood.checked)
@@ -292,8 +289,6 @@ const selectAndCreateMaze = async () => {
       break
     }
   }
-  console.log('here we finished the algorithms')
-  console.log('hahaha')
   progressing = false
   //
   //basicRandom()

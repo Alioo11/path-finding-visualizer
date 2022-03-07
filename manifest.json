@@ -7,21 +7,9 @@
     "description": "find your way !",
     "icons": [
         {
-          "src": "./media/icon/logo-48.png",
-          "sizes": "48x48",
+          "src": "./img/.png/logo-2_0920cb41b7efcb374fd5",
+          "sizes": "500x500",
           "type": "image/png"
-        },
-        {
-          "src": "./media/icon/logo-48.png",
-          "sizes": "48x48"
-        },
-        {
-          "src": "./media/icon/logo-256.png",
-          "sizes": "72x72 96x96 128x128 256x256"
-        },
-        {
-          "src": "./media/icon/logo-256.png",
-          "sizes": "any"
         }
       ]
 }

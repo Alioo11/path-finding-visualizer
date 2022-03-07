@@ -5,21 +5,23 @@ import { onWaiting } from './../helpers/wait.js'
 import { findNeighbours } from "../helpers/neighbours.js";
 import { visPath } from './../helpers/visPath.js'
 import { waitTillUserClick} from '../index.js'
+import { nodeTypes } from "../utils/config.js";
+
+const {
+    scaning ,
+    path ,
+    wall ,
+    target ,
+    entry , 
+    weight , 
+    candidate ,
+    cell} = nodeTypes
 
 const set = Myset
 
 let delayTime = 0;
 let isDetailMood = localStorage.getItem('detail-mode') ? localStorage.getItem('detail-mode') : false;
 let NodeList = [];
-
-const scaning = "scaning";
-const path = "path";
-const wall = "wall";
-const target = "target";
-const entry = "entry";
-const weight = 'weight'
-const candidate = 'candidate'
-const cell = 'cell'
 
 export const normalDijkestras = (startingNode) => {
     return new Promise((resolve, reject) => {
