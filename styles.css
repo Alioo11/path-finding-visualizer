@@ -37,12 +37,13 @@
 
 @keyframes spring {
   0% {
-    background-color: rgba(67, 255, 195, 0.283);
+    background-color: rgba(0, 208, 255, 0.283);
     transform: scale(0.5);
     border-radius: 10px;
   }
   60%{
     transform: scale(1.1);
+    background-color: rgba(13, 0, 255, 0.283);
   }
   100% {
     background-color: rgb(34, 148, 255);
@@ -335,7 +336,6 @@ input:checked + .slider:before {
 .entry {
   /* background-color: rgb(255, 67, 67); */
   background-image: url("./media/arrow\ .png");
-  transform: rotate(-90deg);
   background-repeat: no-repeat, repeat;
   background-size: cover;
   border : solid 1px rgb(213, 213, 213);
@@ -378,8 +378,8 @@ input:checked + .slider:before {
 
 }
 .legend__item{
-  min-width: 200px;
-  min-height: 40px;
+  min-width: 160px;
+  min-height: 30px;
   border-right: solid 1px rgb(138, 138, 138);
   border-left: solid 1px rgb(138, 138, 138);
   display: flex;
@@ -388,17 +388,17 @@ input:checked + .slider:before {
   align-items: center;
 }
 .legend__item > div{
-  margin: 0 1.3rem;
+  margin: 0 0.8rem;
 }
 .legend__item__content{
   color: white;
   font-size: large;
-  font-weight: 500;
+  font-weight: 200;
 }
 
 .legend__item__symbol{
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   padding: 0.1rem;
   border-radius: 0.4rem;
   background-color: rgb(255, 255, 255);
@@ -411,8 +411,8 @@ input:checked + .slider:before {
 } 
 
 .legend__item__symbol__colorItem{
-  width: 20px;
-  height: 20px; 
+  width: 17px;
+  height: 17px; 
   border: solid 2px rgb(154, 154, 154);
 }
 .visited{

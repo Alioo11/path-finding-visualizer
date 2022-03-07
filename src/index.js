@@ -29,12 +29,15 @@ document.getElementById("algo_dijkestra_heap_based").addEventListener('click', (
 })
 document.getElementById('maze_recursive_backtracking').addEventListener('click', () => {
   localStorage.setItem('maze', "recursive_backtracking")
+  selectAndCreateMaze()
 })
 document.getElementById('maze_basic_random').addEventListener('click', () => {
   localStorage.setItem('maze', "basic_random")
+  selectAndCreateMaze()
 })
 document.getElementById("maze_randomized_kruskal").addEventListener('click', () => {
   localStorage.setItem('maze', "randomized_kruskal")
+  selectAndCreateMaze()
 })
 
 document.getElementById("algo_greedy").addEventListener('click', (e) => {
@@ -44,7 +47,7 @@ document.getElementById("algo_greedy").addEventListener('click', (e) => {
 document.querySelector("#clear_maze").addEventListener('click', () => cleanBoard("all"))
 document.querySelector("#clear_path").addEventListener('click', () => cleanBoard("path"))
 document.querySelector("#clear_walls").addEventListener('click', () => cleanBoard("walls"))
-
+const board = document.getElementsByClassName("board");
 const detailMood = document.getElementById("detail-mode")
 document.getElementById("detail-mode").addEventListener('click', () => {
   handleCheckbox()
@@ -53,7 +56,7 @@ document.getElementById("detail-mode").addEventListener('click', () => {
 const maze_speed = document.getElementById("maze_algorithm_speed")
 const algorithm_speed = document.getElementById("algorithm_speed")
 
-const create_maze = document.getElementById("create_maze")
+//const create_maze = document.getElementById("create_maze")
 
 const dimentions = new DM()
 
@@ -79,7 +82,9 @@ document.addEventListener('mousedown', (e) => {
   if (e.target.className == "entry" || e.target.className == "target") {
     hodledElement = e.target.className
     hodingClick = true;
+    e.target.style.cursor = "grabbing";
   }
+  board[0].style.cursor= "grabbing";
   //TODO                                                                       don't forget to change cursor icon 
 })
 
@@ -88,6 +93,7 @@ document.addEventListener('mouseup', (e) => {
   if (progressing) return
   hodingClick = false
   hodledElement = null
+  board[0].style.cursor= "pointer";
 })
 
 
@@ -106,7 +112,7 @@ export const waitTillUserClick = () => {
     })
   })
 }
-const board = document.getElementsByClassName("board");
+
 const createBoard = (width, height) => {
   board[0].innerHTML = Array.from(Array.from(Array(width * height).keys()), (item) => `<div id='${item}' class='cell'></div>`).join().replace(/,/g, "")
 };
@@ -147,7 +153,7 @@ const startBtn = document.getElementById('start_btn')
 
 maze_speed.addEventListener("change", (e) => localStorage.setItem("maze_speed", e.target.value))
 algorithm_speed.addEventListener('change', (e) => localStorage.setItem("algorithm_speed", e.target.value))
-create_maze.addEventListener('click', (e) => selectAndCreateMaze())
+//create_maze.addEventListener('click', (e) => selectAndCreateMaze())
 
 startBtn.addEventListener('click', () => {
   running = !running;
@@ -164,6 +170,7 @@ const cleanBoard = async (type) => {
   for (let i = 0; i < cells.length; i++) {
     i % WIDTH == 0 && await onWaiting(20)
     if (type == "all") {
+      localStorage.setItem("algorithm" ,"")
       forceDraw(cells[i], cell)
       forceDraw(cells[cells.length - i - 1], cell)
       writeIn(cells[i], '')
@@ -337,7 +344,7 @@ cells.forEach((cellNode) => {
           targetNode = e.target
         }
         // console.log(step);
-        if (step > 1) {
+        if (step > 1 && localStorage.getItem("algorithm")) {
           startVis(true)
         }
       }
