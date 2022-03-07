@@ -418,6 +418,9 @@ input:checked + .slider:before {
 .visited{
   background-color: rgb(34, 148, 255);
 }
+.wall_leg{
+  background-color: rgb(53, 59, 67); 
+}
 
 @media only screen and (max-width: 600px) 
 {
