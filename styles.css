@@ -7,7 +7,7 @@
     background-color: rgb(50, 140, 235);
     transform: scale(1.1);
   }
-    100% {
+  100% {
     background-color: rgb(34, 148, 255);
     transform: scale(1);
   }
@@ -41,7 +41,7 @@
     transform: scale(0.5);
     border-radius: 10px;
   }
-  60%{
+  60% {
     transform: scale(1.1);
     background-color: rgba(13, 0, 255, 0.283);
   }
@@ -55,14 +55,14 @@
 @keyframes scan {
   0% {
     background-color: rgba(67, 255, 195, 0.283);
-    transform: scale(0.1) ;
+    transform: scale(0.1);
   }
   10% {
     transform: scale(1.2);
   }
   100% {
     background-color: rgb(34, 148, 255);
-    transform: scale(1) ;
+    transform: scale(1);
   }
 }
 
@@ -93,7 +93,7 @@
   0% {
     transform: scale(0.1) translateY(30px);
   }
-  80%{
+  80% {
     transform: scale(1.1) translateY(0px);
   }
   100% {
@@ -103,11 +103,11 @@
 
 @keyframes cellAnime {
   0% {
-    background-color: rgb(0, 110, 245); 
+    background-color: rgb(0, 110, 245);
     border-radius: 15px;
     transform: scale(0.5);
   }
-  50%{
+  50% {
     transform: scale(1.2);
   }
   100% {
@@ -126,8 +126,8 @@ body {
   align-items: center;
   margin: 0;
 }
-.custom-title{
-  margin: auto 1rem; 
+.custom-title {
+  margin: auto 1rem;
   font-weight: 500;
 }
 
@@ -148,16 +148,16 @@ body {
   height: 34px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-.nav-item :first-child{
-  margin:  0 10px;
+.nav-item :first-child {
+  margin: 0 10px;
 }
-nav{
-  width : 100%;
+nav {
+  width: 100%;
 }
 .slider {
   position: absolute;
@@ -167,8 +167,8 @@ nav{
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -179,16 +179,16 @@ nav{
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -261,8 +261,8 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
   font-size: 10px;
-    border : solid 1px rgba(213, 213, 213,0.5);
-  border-top:none;
+  border: solid 1px rgba(213, 213, 213, 0.5);
+  border-top: none;
   border-left: none;
 }
 .cell {
@@ -274,8 +274,7 @@ input:checked + .slider:before {
   align-items: center;
   font-size: 14px;
   transition: background-color 1000;
-  animation-name: cellAnime; 
-
+  animation-name: cellAnime;
 }
 .scaning {
   background-color: rgb(34, 148, 255);
@@ -310,7 +309,7 @@ input:checked + .slider:before {
 }
 
 .wall {
-  background-color: rgb(53, 59, 67); 
+  background-color: rgb(53, 59, 67);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -323,8 +322,8 @@ input:checked + .slider:before {
   background-image: url("./media/destination.png");
   background-repeat: no-repeat, repeat;
   background-size: cover;
-  border : solid 1px rgb(213, 213, 213);
-  border-top:none;
+  border: solid 1px rgb(213, 213, 213);
+  border-top: none;
   border-left: none;
   display: flex;
   justify-content: center;
@@ -338,8 +337,8 @@ input:checked + .slider:before {
   background-image: url("./media/arrow\ .png");
   background-repeat: no-repeat, repeat;
   background-size: cover;
-  border : solid 1px rgb(213, 213, 213);
-  border-top:none;
+  border: solid 1px rgb(213, 213, 213);
+  border-top: none;
   border-right: none;
   display: flex;
   justify-content: center;
@@ -347,8 +346,8 @@ input:checked + .slider:before {
   font-size: 14px;
   color: gray;
 }
-.candidate { 
-    background-color: rgb(160, 160, 160);
+.candidate {
+  background-color: rgb(160, 160, 160);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -356,18 +355,17 @@ input:checked + .slider:before {
   font-weight: 900;
   color: rgb(0, 0, 0);
 }
-.nav-item{
+.nav-item {
   display: flex;
   width: 100%;
   min-width: 11rem;
   justify-content: center;
   align-items: center;
   /* margin: 0rem 2rem; */
-  color: rgba(0,0,0,.5);
+  color: rgba(0, 0, 0, 0.5);
 }
 
-
-.legend{
+.legend {
   width: 100%;
   height: fit-content;
   background-color: #3f4851;
@@ -375,9 +373,8 @@ input:checked + .slider:before {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
 }
-.legend__item{
+.legend__item {
   min-width: 160px;
   min-height: 30px;
   border-right: solid 1px rgb(138, 138, 138);
@@ -387,16 +384,16 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
 }
-.legend__item > div{
+.legend__item > div {
   margin: 0 0.8rem;
 }
-.legend__item__content{
+.legend__item__content {
   color: white;
   font-size: large;
   font-weight: 200;
 }
 
-.legend__item__symbol{
+.legend__item__symbol {
   height: 25px;
   width: 25px;
   padding: 0.1rem;
@@ -406,33 +403,80 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
 }
-.legend__item__symbol img  {
-    width: 100%;
-} 
+.legend__item__symbol img {
+  width: 100%;
+}
 
-.legend__item__symbol__colorItem{
+.legend__item__symbol__colorItem {
   width: 17px;
-  height: 17px; 
+  height: 17px;
   border: solid 2px rgb(154, 154, 154);
 }
-.visited{
+.visited {
   background-color: rgb(34, 148, 255);
 }
-.wall_leg{
-  background-color: rgb(53, 59, 67); 
+.wall_leg {
+  background-color: rgb(53, 59, 67);
 }
 
-@media only screen and (max-width: 600px) 
-{
-  .custom-title{
+.guide {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 300px;
+  padding: 1rem;
+  height: fit-content;
+  border-radius: 0.6rem;
+  background-color: #3f4851;
+  opacity: 70%;
+  transition: all 100ms;
+  cursor: default;
+}
+.closeGuide {
+  height: 50px;
+}
+.closeGuide *:not(.guide__item__icon) {
+  display: none;
+}
+.guide:hover {
+  opacity: 100%;
+}
+.giude__header {
+  font-size: 1.3rem;
+  text-align: center;
+  color: rgb(179, 179, 179);
+}
+.guide__item {
+  color: rgb(179, 179, 179);
+  width: fit-content;
+  padding: 1rem;
+  margin: 0;
+  height: fit-content;
+}
+.guide__item__key {
+  font-weight: 700;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.2rem;
+  margin: 0.5rem;
+  width: 50px !important;
+  background-color: rgb(40, 40, 40);
+}
+
+.hide {
+  display: none !important;
+}
+.guide__item__icon {
+  filter: invert(1);
+  width: 20px;
+  cursor: pointer;
+  float: right;
+}
+@media only screen and (max-width: 600px) {
+  .custom-title {
     display: none;
   }
 }
-/* *{
-  filter: blur(2px) brightness(0.9);
-} */
-
-.modal{
+.modal {
   width: 50px;
   height: 50px;
   background-color: red;
