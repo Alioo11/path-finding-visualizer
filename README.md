@@ -1,8 +1,26 @@
-# Pathfinding Visualizer
+## Pathfinding Visualizer 
 
-![preview](https://user-images.githubusercontent.com/79578428/148079541-373aa759-c2e9-412c-b560-cc3e18e4b2ce.gif)
+<img src="https://user-images.githubusercontent.com/79578428/161223701-9c089911-8646-4108-af01-28c8c123ce86.png" style="width:100px ; height:100px">
 
-path finding visualizer is a project to demostrate how path finding algorithms work under the hood with some cool animations you can also see some of maze generating algorithms too .
+pathfinding visualizer is a visualization tool to demonstrate how pathfinding algorithms work I hope you enjoy it . <br>
+you can checkout the project [ here ](https://sharp-yonath-ae3c9d.netlify.app/)
 
 
-[check out the project here ](https://sharp-yonath-ae3c9d.netlify.app/)
+## Usage
+after you clone the project run `npm install` to install all dependencies . <br>
+now you can run `npm start` to run the project in development server <br>
+or run `npm run build` to generate optimized version in build folder
+
+## About the algorithms
+
+#### pathfinding-algorithms
+- dijkestra 
+- A*
+- greedy-algorithms
+
+#### maze-generating-algorithms
+- recursive-backtraking
+- randomized-kruskal
+
+
+
