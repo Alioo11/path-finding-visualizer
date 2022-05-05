@@ -1,34 +1,25 @@
-"strict mode"
+"strict mode";
 import { draw, writeIn } from "../helpers/draw.js";
-import { onWaiting } from './../helpers/wait.js'
+import { onWaiting } from "./../helpers/wait.js";
 import { findNeighbours } from "../helpers/neighbours.js";
-import { visPath } from './../helpers/visPath.js'
+import { visPath } from "./../helpers/visPath.js";
 import { distance } from "../helpers/distance.js";
-import { waitTillUserClick} from '../index.js'
+import { waitTillUserClick } from "../index.js";
 
 import { nodeTypes } from "../utils/config.js";
 
-const {
-    scaning ,
-    path ,
-    wall ,
-    target ,
-    entry , 
-    weight , 
-    candidate ,
-    cell} = nodeTypes
-
+const { scaning, path, wall, target, entry, weight, candidate, cell } = nodeTypes;
 
 const clearBoard = (nodes) => {
   nodes.forEach((cellNode) => {
     if (!(cellNode.node.className == wall || cellNode.node.className == weight)) {
-      draw(cellNode.node, cell)
-      writeIn(cellNode.node, '')
+      draw(cellNode.node, cell);
+      writeIn(cellNode.node, "");
     }
-  })
-}
+  });
+};
 
-let isDetailMood = localStorage.getItem('detail-mode') ? localStorage.getItem('detail-mode') : false
+let isDetailMood = localStorage.getItem("detail-mode") ? localStorage.getItem("detail-mode") : false;
 
 function Node(node, orgin, type, cost, heuristic) {
   this.node = node;
@@ -42,26 +33,20 @@ function Myset() {
   let collection = [];
   let bestNode = null;
   this.add = (Node) => {
-    const haveItem =
-      collection.filter((item) => item.node?.id == Node.id).length > 0;
+    const haveItem = collection.filter((item) => item.node?.id == Node.id).length > 0;
     if (!haveItem) {
       collection.push(Node);
     } else {
-      collection = collection.filter(
-        (item) => item.node?.id !== Node.id
-      );
+      collection = collection.filter((item) => item.node?.id !== Node.id);
     }
   };
   this.delete = (Node) => {
-    collection = collection.filter(
-      (collectionItem) => collectionItem?.node?.id !== Node.node.id
-    );
+    collection = collection.filter((collectionItem) => collectionItem?.node?.id !== Node.node.id);
     return collection;
   };
   this.findBestNode = () => {
     this.bestNode = collection.reduce((all, current) => {
-      return all.cost + all.heuristic  > current.cost + current.heuristic ? current : all;
-
+      return all.cost + all.heuristic > current.cost + current.heuristic ? current : all;
     });
     // console.log(this.bestNode)
     return this.bestNode;
@@ -75,63 +60,63 @@ function Myset() {
   this.col = () => {
     return collection;
   };
-  this.clear = ()=>{
-    collection = []
-  }
+  this.clear = () => {
+    collection = [];
+  };
 }
-const set = Myset
+const set = Myset;
 
 export const a_start = (startNode, endNode) => {
   //console.log(startNode , endNode)
-  const visitedNodes = []
+  const visitedNodes = [];
   const interation = async (NodeCell, firstTime = true) => {
-    const possibleNodes = []
+    const possibleNodes = [];
     if (NodeCell.node.className === target) {
-      //? found the target node 
+      //? found the target node
       visPath(NodeCell);
       return;
     }
     draw(NodeCell.node, firstTime ? scaning : scaning);
 
-    writeIn(NodeCell.node, `C:${NodeCell.cost} <br/> H:${NodeCell.cost == '0' ? 0 : NodeCell.heuristic}`)
-    const possibleRout = findNeighbours(NodeCell.node, 1)
+    writeIn(NodeCell.node, `C:${NodeCell.cost} <br/> H:${NodeCell.cost == "0" ? 0 : NodeCell.heuristic}`);
+    const possibleRout = findNeighbours(NodeCell.node, 1);
     if (possibleRout.length == 0) {
-      if (visitedNodes.length === 0) alert('there is no way out  !')
-      visitedNodes.pop()
-      interation(visitedNodes[visitedNodes.length - 1])
+      if (visitedNodes.length === 0) alert("there is no way out  !");
+      visitedNodes.pop();
+      interation(visitedNodes[visitedNodes.length - 1]);
     } else {
       const res = await onWaiting(50);
-      visitedNodes.push(NodeCell)
+      visitedNodes.push(NodeCell);
       possibleRout.forEach((item) => {
         const cost = NodeCell.cost + (item.className === weight ? 10 : 1);
         const heuristic = distance(item, endNode);
-        console.log(distance(item, endNode))
-        console.log(NodeCell.cost + (item.className === weight ? 10 : 1))
-        const NewNode = new Node(item, NodeCell, scaning, cost, heuristic)
-        possibleNodes.push(NewNode)
-      })
+        console.log(distance(item, endNode));
+        console.log(NodeCell.cost + (item.className === weight ? 10 : 1));
+        const NewNode = new Node(item, NodeCell, scaning, cost, heuristic);
+        possibleNodes.push(NewNode);
+      });
       const bestNode = possibleNodes.reduce((all, current) => {
         return all.cost + all.heuristic > current.cost + current.heuristic ? current : all;
-      })
-      interation(bestNode)
+      });
+      interation(bestNode);
     }
-  }
-  interation(startNode, true)
-}
-let delayTime =0;
+  };
+  interation(startNode, true);
+};
+let delayTime = 0;
 let NodeList = [];
 
 export const a_start2 = (startingNode, endNode) => {
   const possibleRouts = new set();
   const iteration = async (nodeLoop, firstTime) => {
-    firstTime ? delayTime = (5 - localStorage.getItem("algorithm_speed")) * 20 + 2 : 15;
-    isDetailMood = localStorage.getItem("detail-mode")
-    if (isDetailMood && isDetailMood !== 'false') {
-      await waitTillUserClick()
+    firstTime ? (delayTime = (5 - localStorage.getItem("algorithm_speed")) * 20 + 2) : 15;
+    isDetailMood = localStorage.getItem("detail-mode");
+    if (isDetailMood && isDetailMood !== "false") {
+      await waitTillUserClick();
     }
     NodeList.push(nodeLoop);
-    draw(nodeLoop.node, firstTime ? entry : scaning , {animationDuration:500});
-    writeIn(nodeLoop.node, `C:${nodeLoop.cost} <br/> H:${nodeLoop.cost == 0 ? 0 : nodeLoop.heuristic}`)
+    draw(nodeLoop.node, firstTime ? entry : scaning, { animationDuration: 500 });
+    writeIn(nodeLoop.node, `C:${nodeLoop.cost} <br/> H:${nodeLoop.cost == 0 ? 0 : nodeLoop.heuristic}`);
     if (nodeLoop.node.className === target) {
       visPath(nodeLoop);
       return;
@@ -140,11 +125,11 @@ export const a_start2 = (startingNode, endNode) => {
     possibleRouts.delete(nodeLoop);
     findNeighbours(nodeLoop.node).forEach((item) => {
       const cost = nodeLoop.cost + (item.className === weight ? 10 : 1);
-      const heuristic = distance(item, endNode)*1;
+      const heuristic = distance(item, endNode) * 5;
       const newNode = new Node(item, nodeLoop, scaning, cost, heuristic);
-      isDetailMood && draw(item, candidate)
-     // isDetailMood && writeIn
-      isDetailMood && writeIn(item , `C:${newNode.cost} <br/> H:${newNode.cost == 0 ? 0 : newNode.heuristic}`)
+      isDetailMood && draw(item, candidate);
+      // isDetailMood && writeIn
+      isDetailMood && writeIn(item, `C:${newNode.cost} <br/> H:${newNode.cost == 0 ? 0 : newNode.heuristic}`);
       possibleRouts.add(newNode);
     });
     iteration(possibleRouts.findBestNode());
@@ -155,8 +140,8 @@ const possibleRouts = new set();
 export const a_start_realTime = (startingNode, endNode) => {
   const iteration = (nodeLoop, firstTime) => {
     NodeList.push(nodeLoop);
-    if(firstTime){
-      clearBoard(NodeList)
+    if (firstTime) {
+      clearBoard(NodeList);
     }
     draw(nodeLoop.node, firstTime ? entry : scaning);
     if (nodeLoop.node.className === target) {
@@ -168,18 +153,18 @@ export const a_start_realTime = (startingNode, endNode) => {
       for (let i = revPath.length - 1; i >= 0; i--) {
         draw(revPath[i], path);
       }
-      possibleRouts.clear()
-      return 
+      possibleRouts.clear();
+      return;
     }
     possibleRouts.delete(nodeLoop);
     findNeighbours(nodeLoop.node).forEach((item) => {
       const cost = nodeLoop.cost + (item.className === weight ? 10 : 1);
-      const heuristic = distance(item, endNode);
+      const heuristic = distance(item, endNode) * 5;
       const newNode = new Node(item, nodeLoop, scaning, cost, heuristic);
       possibleRouts.add(newNode);
     });
-    if(possibleRouts.col().length === 0){
-      return
+    if (possibleRouts.col().length === 0) {
+      return;
     }
     iteration(possibleRouts.findBestNode());
   };
